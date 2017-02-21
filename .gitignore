@@ -103,6 +103,8 @@ ENV/
 *.log
 *.sql
 *.sqlite
+*.db
+*.csv
 
 # OS generated files #
 ######################
