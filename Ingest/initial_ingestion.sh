@@ -1,5 +1,4 @@
 #! /bin/bash
-
 #### Description: Ingestion Bash Script  
 # Descarga inicial para exploración de bases de datos para entender el proyecto
 # Este código - aún no es parte del pipeline TODO(Luigi)

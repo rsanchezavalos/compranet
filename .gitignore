@@ -108,5 +108,7 @@ ENV/
 
 # OS generated files #
 ######################
+.RData
 .DS_Store
 .DS_Store?
+.Rproj.user
