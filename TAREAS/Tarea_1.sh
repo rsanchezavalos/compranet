@@ -23,3 +23,5 @@ ls ./temp_gdelt/*.CSV.zip | parallel -j0 zgrep -e "MEXICO" | sed "1s/.*/$header/
 
 #- guarda en otra *tabla* (llamada mexico_ts=) con número de eventos por día y la escala de goldstein 
 sqlite3 gdelt.db  'CREATE TABLE mexico_ts AS SELECT DATEADDED,COUNT(DATEADDED), avg(GoldsteinScale) FROM mexico where Actor1CountryCode="MEX" or Actor2CountryCode="MEX"  GROUP BY DATEADDED;'
+
+
