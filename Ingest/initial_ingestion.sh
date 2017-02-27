@@ -17,7 +17,8 @@ wget -q -O-  'http://portaltransparencia.gob.mx/pot/repoServlet?archivo=director
 # Compranet
 
 # Descargar
-wget --no-check-certificate -i Lista_URL_Compranet.txt
+wget --no-check-certificate http://compranetinfo.funcionpublica.gob.mx/descargas/cnet3/EX{2002..2011}.xlsx
+wget --no-check-certificate http://compranetinfo.funcionpublica.gob.mx/descargas/cnet3/LP{2002..2011}.xlsx
 
 # De 2002 a 2011
 for filename in $(ls *.xlsx)
