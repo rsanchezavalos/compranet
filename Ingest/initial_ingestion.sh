@@ -12,7 +12,6 @@ wget -q -O-  'http://portaltransparencia.gob.mx/pot/repoServlet?archivo=director
 	sed '1s/.*/institucion,nombre,primer_apellido,segundo_apellido,telefono,tipo_personal,cargo,cargo_superior,unidad_administrativa,clave_puesto,nombre_puesto,vacancia,telefono_directo,conmutador,extension,fax,email/g' | \
 	csvsql --db sqlite:///raw.db --insert --table funcionarios 
 
-
 ###############
 # Compranet
 echo "Descarga Compranet"
@@ -31,27 +30,27 @@ rm EX* LP*
 
 # De 2010 a 2017
 
-# unzip Contratos2010_2012.zip
-# xlsx2csv Contratos2010_2012_160930120647.xlsx > Contratos2010_2012.csv
+unzip Contratos2010_2012.zip
+xlsx2csv Contratos2010_2012_160930120647.xlsx > Contratos2010_2012.csv
 
-# unzip Contratos2013.zip
-# xlsx2csv Contratos2013_170220083907.xlsx > Contratos2013.csv
+unzip Contratos2013.zip
+xlsx2csv Contratos2013_170220083907.xlsx > Contratos2013.csv
 
-# unzip Contratos2014.zip
-# xlsx2csv Contratos2014_170220083311.xlsx > Contratos2014.csv
+unzip Contratos2014.zip
+xlsx2csv Contratos2014_170220083311.xlsx > Contratos2014.csv
 
-# unzip Contratos2015.zip
-# xlsx2csv Contratos2015_170220082325.xlsx > Contratos2015.csv
+unzip Contratos2015.zip
+xlsx2csv Contratos2015_170220082325.xlsx > Contratos2015.csv
 
-# unzip Contratos2016.zip
-# xlsx2csv Contratos2016_170220070535.xlsx > Contratos2016.csv
+unzip Contratos2016.zip
+xlsx2csv Contratos2016_170220070535.xlsx > Contratos2016.csv
 
-# unzip Contratos2017.zip
-# xlsx2csv Contratos2017_170220070009.xlsx > Contratos2017.csv
+unzip Contratos2017.zip
+xlsx2csv Contratos2017_170220070009.xlsx > Contratos2017.csv
 
-# csvstack Contratos2010_2012.csv Contratos2013.csv Contratos2014.csv Contratos2015.csv Contratos2016.csv Contratos217.csv> 2012_2017.csv 
+csvstack Contratos2010_2012.csv Contratos2013.csv Contratos2014.csv Contratos2015.csv Contratos2016.csv Contratos217.csv> 2012_2017.csv 
 
-# csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert 2012_2017.csv
+csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert 2012_2017.csv
 
 
 
