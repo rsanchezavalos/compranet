@@ -14,22 +14,28 @@ wget -q -O-  'http://portaltransparencia.gob.mx/pot/repoServlet?archivo=director
 
 ###############
 # Compranet
-echo "Descarga Compranet"
+
+echo "Descarga Compranet De 2002 a 2011"
 # Descargar
 wget --no-check-certificate http://compranetinfo.funcionpublica.gob.mx/descargas/cnet3/EX{2002..2011}.xlsx
 wget --no-check-certificate http://compranetinfo.funcionpublica.gob.mx/descargas/cnet3/LP{2002..2011}.xlsx
 
-# De 2002 a 2011
 for filename in $(ls *.xlsx)
 	in2csv $filename | sed '1d' >> 2002_2011.csv
 
 cat 2002_2011.csv | sed '1s/.*/DEPENDENCIA_ENTIDAD,NOMBRE_UC,CLAVE_UC,NUMERO_DE_PROCEDIMIENTO,TIPO_DE_PROCEDIMIENTO,TIPO_CONTRATACION,CARACTER,NUMERO_DE_CONTRATO,REFERENCIA_DE_LA_CONTRATACION, FECHA_DE_SUSCRIPCION_DE_CONTRATO,IMPORTE_MN_SIN_IVA,RAZON_SOCIAL,URL_DEL_CONTRATO/g' | \
 	csvsql --db sqlite:///raw.db --insert --table compranet_2002_2011
-
 rm EX* LP*
 
-# De 2010 a 2017
 
+echo "Descarga Compranet De 2010 a 2017"
+unzip =( wget  -qO- --no-check-certificate  https://compranetinfo.funcionpublica.gob.mx/descargas/cnet/Contratos2010_2012.zip  ) & xlsx2csv > temp.csv
+
+
+
+wget --no-check-certificate  https://upcp.funcionpublica.gob.mx/descargas/Contratos{2013..2017}.zip
+
+wget --no-check-certificate  https://compranetinfo.funcionpublica.gob.mx/descargas/cnet/Contratos2010_2012.zip | unzip | 
 unzip Contratos2010_2012.zip
 xlsx2csv Contratos2010_2012_160930120647.xlsx > Contratos2010_2012.csv
 
