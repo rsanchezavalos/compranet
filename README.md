@@ -1,7 +1,4 @@
-# equipo_1
-## Compranet - Ciencia de Datos para evitar la corrupción.
-
-**Issues** 
+# Compranet - Ciencia de Datos para evitar la corrupción.
 
 ## About:
 Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Función Pública) que asiste el proceso de contratación de servicios, bienes, arrendamientos y obra pública de las dependencias y entidades de la administración pública.
@@ -10,20 +7,21 @@ Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Func
 
 ### Technical Plan
 
-### Configuration Files
-
-### Dependencies
 
 ### Data Pipeline
 
-* Descarga de Datos
+* Download Data
 	- /Ingest/Initial_Ingestion Descarga Compranet y el directorio de funcionarios
-	- /Ingest/declaranet - scrapy/selenium crawler para obtener cvs y declaración *desarrollo
-* Raw Creation
+	- /Ingest/declaranet - scrapy/selenium crawler para obtener cvs y declaración **[Desarrollo]**
+* Raw Table Creation **[Desarrollo]**
 	- Datos se suben a un RDS
-**[Pendiente]**
-* Create semantic tables
-* Subset rows
+* Create semantic tables **[Desarrollo]**
+* Create semantic tables **[Desarrollo]**
+* Create Graph DB **[Desarrollo]**
+
+### Configuration Files
+
+### Dependencies
 
 ### Wishful
 
