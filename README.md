@@ -17,11 +17,11 @@ Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Func
 ### Data Pipeline
 
 * Descarga de Datos
-	/Ingest/Initial_Ingestion Descarga Compranet y el directorio de funcionarios
-	/Ingest/declaranet - scrapy/selenium crawler para obtener cvs y declaración *desarrollo
+	- /Ingest/Initial_Ingestion Descarga Compranet y el directorio de funcionarios
+	- /Ingest/declaranet - scrapy/selenium crawler para obtener cvs y declaración *desarrollo
 * Raw Creation
-	Datos se suben a un RDS
-[Pendiente]
+	- Datos se suben a un RDS
+**[Pendiente]**
 * Create semantic tables
 * Subset rows
 
