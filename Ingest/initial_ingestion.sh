@@ -1,8 +1,12 @@
 #! /bin/bash
 #### Description: Ingestion Bash Script  
 # Descarga inicial para exploración de bases de datos para entender el proyecto
-# Este código - aún no es parte del pipeline TODO(Luigi)
 
+
+# ToDO(Luigi)
+# Metadatos de Compranet
+# Metadatos de Funcionarios
+# Pipeline de actualización de Base de datos
 
 ###############
 # Directorio de Funcionarios públicos
@@ -11,6 +15,7 @@ wget -q -O-  'http://portaltransparencia.gob.mx/pot/repoServlet?archivo=director
 	zcat |  sed -E 's/(^\=|",\=")/,/g;s/("|^ | $|^\,)//g;s/\s+/ /g;s/^\,//g;s/,$//g;' | sed -n '1!p' | 	\
 	sed '1s/.*/institucion,nombre,primer_apellido,segundo_apellido,telefono,tipo_personal,cargo,cargo_superior,unidad_administrativa,clave_puesto,nombre_puesto,vacancia,telefono_directo,conmutador,extension,fax,email/g' | \
 	csvsql --db sqlite:///raw.db --insert --table funcionarios 
+
 
 ###############
 # Compranet
@@ -37,11 +42,14 @@ rm *.zip
 find . -name '*.xlsx' | parallel ssconvert -T Gnumeric_stf:stf_csv {} \;
 rm *.xlsx
 
+# ToDo()
+# Hace falta revisar la versión del documento antes del cambio que es del tipo 170302082128
+# tenemos que guardar esta información - puede ser algo como esto:
+for f (./*.csv) echo "${f%_*.*} version $f" >> metadata.txt
 
-#csvstack > 2012_2017.csv 
-#csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert 2012_2017.csv
+cat Contratos2010_2012*.csv | csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert
+rm Contratos2010_2012*.csv
 
-
-
-
-
+csvstack $( ls *.csv ) > 2012_2017.csv 
+csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert 2012_2017.csv
+rm *.csv

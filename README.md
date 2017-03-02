@@ -1,5 +1,14 @@
 # Compranet - Ciencia de Datos para evitar la corrupción.
 
+## ToDo's
+
+- SQLite 2 RDS 
+- Terminar Spider Declaranet
+- Metadatos de Compranet
+- Metadatos de Funcionarios
+- Pipeline de actualización de Base de datos
+- ToDO(Luigi)
+
 ## About:
 Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Función Pública) que asiste el proceso de contratación de servicios, bienes, arrendamientos y obra pública de las dependencias y entidades de la administración pública.
 **
