@@ -29,34 +29,17 @@ rm EX* LP*
 
 
 echo "Descarga Compranet De 2010 a 2017"
-unzip =( wget  -qO- --no-check-certificate  https://compranetinfo.funcionpublica.gob.mx/descargas/cnet/Contratos2010_2012.zip  ) & xlsx2csv > temp.csv
+
+wget --no-check-certificate  https://compranetinfo.funcionpublica.gob.mx/descargas/cnet/Contratos2010_2012.zip 
+wget --no-check-certificate  https://upcp.funcionpublica.gob.mx/descargas/Contratos{2013..2017}.zip 
+for f (./*.zip) unzip $f 
+rm *.zip
+find . -name '*.xlsx' | parallel ssconvert -T Gnumeric_stf:stf_csv {} \;
+rm *.xlsx
 
 
-
-wget --no-check-certificate  https://upcp.funcionpublica.gob.mx/descargas/Contratos{2013..2017}.zip
-
-wget --no-check-certificate  https://compranetinfo.funcionpublica.gob.mx/descargas/cnet/Contratos2010_2012.zip | unzip | 
-unzip Contratos2010_2012.zip
-xlsx2csv Contratos2010_2012_160930120647.xlsx > Contratos2010_2012.csv
-
-unzip Contratos2013.zip
-xlsx2csv Contratos2013_170220083907.xlsx > Contratos2013.csv
-
-unzip Contratos2014.zip
-xlsx2csv Contratos2014_170220083311.xlsx > Contratos2014.csv
-
-unzip Contratos2015.zip
-xlsx2csv Contratos2015_170220082325.xlsx > Contratos2015.csv
-
-unzip Contratos2016.zip
-xlsx2csv Contratos2016_170220070535.xlsx > Contratos2016.csv
-
-unzip Contratos2017.zip
-xlsx2csv Contratos2017_170220070009.xlsx > Contratos2017.csv
-
-csvstack Contratos2010_2012.csv Contratos2013.csv Contratos2014.csv Contratos2015.csv Contratos2016.csv Contratos217.csv> 2012_2017.csv 
-
-csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert 2012_2017.csv
+#csvstack > 2012_2017.csv 
+#csvsql --db sqlite:///raw.db --table compranet_2012_2017 --insert 2012_2017.csv
 
 
 
