@@ -26,7 +26,7 @@ Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Func
 
 ### Contributors
 
-| [![taguerram][ph-thalia]][gh-thalia] | [![rsanchezavalos][ph-rsanchez]][gh-rsanchez](=250x) | [![monzalo14][ph-monica]][gh-monica] | [![maragones][ph-manuel-a]][gh-manuel-a] |
+| [![taguerram][ph-thalia]][gh-thalia] | [![rsanchezavalos][ph-rsanchez]][gh-rsanchez] | [![monzalo14][ph-monica]][gh-monica] | [![maragones][ph-manuel-a]][gh-manuel-a] |
 |                 :--:                 |                     :--:                      |                     :--:             |                     :--:             |
 |        [Thalia][gh-thalia]         |         [rsanchezavalos][gh-rsanchez]           |          [monzalo14][gh-monica]      |          [maragones][gh-manuel-a]      |
 
@@ -42,7 +42,7 @@ Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Func
 [ph-manuel-a]: https://avatars2.githubusercontent.com/u/11464076?v=3&s=460
 [gh-manuel-a]: https://github.com/maragones
 
-[ph-rsanchez]: https://avatars.githubusercontent.com/u/10931011?v=3&s=80
+[ph-rsanchez]: https://avatars.githubusercontent.com/u/10931011?v=3&s=460
 [gh-rsanchez]: https://github.com/rsanchezavalos
 
 
