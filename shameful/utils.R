@@ -11,17 +11,28 @@ lapply(.packages, require, character.only=TRUE)
 
 # NA's correlation analysis
 
-cormat_NAs <- function(dataf) {
+fill_NAs <- function(data_frame) {
+  for (i in 1:nrow(data_frame)) {
+    for (j in 1:ncol(data_frame)) {
+      ifelse(data_frame[i,j] == '',
+             data_frame[i,j] <- NA,
+             data_frame[i,j] <- data_frame[i,j])
+    }
+  }
   
-  porccol <- apply(is.na(dataf), 1, sum)/ncol(dataf)
-  porcrow <- apply(is.na(dataf), 2, sum)/nrow(dataf)
-  compporc <- sum(complete.cases(dataf))/nrow(dataf)
+}
+
+cormat_NAs <- function(data_frame) {
+  
+  porccol <- apply(is.na(data_frame), 1, sum)/ncol(data_frame)
+  porcrow <- apply(is.na(data_frame), 2, sum)/nrow(data_frame)
+  compporc <- sum(complete.cases(data_frame))/nrow(data_frame)
   
   if(compporc!=1){
     colsmasfalta <- paste(sort(porcrow[porcrow>0], decreasing = TRUE) %>%
                             names(), collapse = ", ")
     
-    cor.mat <- cor(is.na(dataf)[,porcrow>0] )
+    cor.mat <- cor(is.na(data_frame)[,porcrow>0] )
     tab.corr <- cor.mat %>%
       tbl_df() %>%
       mutate(rows = colnames(cor.mat)) %>%
