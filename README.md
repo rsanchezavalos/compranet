@@ -38,7 +38,7 @@ Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Func
 
 | [![taguerram][ph-thalia]][gh-thalia] | [![rsanchezavalos][ph-rsanchez]][gh-rsanchez] | [![monzalo14][ph-monica]][gh-monica] | [![maragones][ph-manuel-a]][gh-manuel-a] |
 |                 :--:                 |                     :--:                      |                     :--:             |                     :--:             |
-|        [Thalia][gh-thalia]         |         [rsanchezavalos][gh-rsanchez]           |          [monzalo14][gh-monica]      |          [maragones][gh-manuel-a]      |
+|        [taguerram][gh-thalia]         |         [rsanchezavalos][gh-rsanchez]           |          [monzalo14][gh-monica]      |          [maragones][gh-manuel-a]      |
 
 
 
