@@ -1,0 +1,57 @@
+Reunión: 16_02_17
+
+Preguntas:
+	- Umbral de licitaciones vs. adjudicaciones: ¿podemos ver que se agrupan debajo del umbral? ¿Qué podemos decir de esos proyectos?
+	* Idea de Moni: hay más de una manera interesante de relacionar los proyectos que se agrupan debajo del umbral con indicios de fraude/tráfico de influencias
+	- ¿Relación entre aumentos en salarios (ajustados por inflación) y cosas raras en contratos? Los salarios están amarrados por el nivel del puesto. Podríamos generar un diccionario de claves de salario.
+	- Revisar si hay asociación entre empresas en particular y gente en particular, i.e. ¿la banda se va de una Secretaría cuando se va un compi en particular?
+	- (Cuasi)grafo con funcionarios y empresas
+		- Necesitamos generar unicidad para funcionarios
+			- Podemos usar declaranet para hacer un historial de funcionarios (declaración, CV y (opcional) declaración de conflictos de interés).
+			- Tomamos nombre de funcionario, buscar en la API de declaranet, tomas todos los homónimos. Luego, en la lista de funcionarios hay funcionario e institución. Matcheas funcionario + institución en declaranet. Tomas su CV y generas el histórico funcionario. Si matchea, es único. Si no, lloramos. 
+			- Tomar empresas de los contratos.
+			* Lo que nos falta para el RFC es el año de la persona, para generar unicidad. Hay varias ideas en el aire de cómo obtener el año
+			* Roberto: como primer ejercicio, no lo hagamos por funcionario, sino por área.
+
+Otros proyectos/otros datos:
+	- DSSG: proyecto para detección de fraude. Buscar features
+	- ¿Qué información podemos obtener de las empresas en otras instancias?
+	- ¿Dónde se publican las 3de3?
+	- ¿Qué tan complejo sería hacer análisis de texto no estructurado sobre los documentos de licitaciones?
+	- SocialTic + SHCP: mock de gasto público
+	- Revisar página de Roberto del Universal (Slack). Analizar esa base de datos.
+	- Base de empresas y/o funcionarios castigados (esos pueden ser nuestros labels)
+	* Alguien mencionó esto de "Los Proveedores del Poder"
+	* ¿Qué datos tiene el SAT de las empresas?
+
+Bases que ya podemos usar:
+	- Declaranet: Mónica
+	- Compranet: Thalía
+	- INAI: Roberto 
+	- Datos.gob (compradores y funcionarios) - Manuel
+	* Roberto: no necesariamente está todo en el INAI, hay que checar eso
+
+Preguntas: 
+	Sobre los datos:
+	- ¿Temporalidad?
+	- ¿Histórico?
+	- ¿Qué tan completa puede estar?
+	- Layout
+
+	Sobre la base:
+	* Propuesta de Manuel: podemos armar un formatito de ideas y preguntas a la base
+	* Propuesta de Roberto: irnos rolando bases para hacerles preguntas a distintas bases cada quién
+
+Acuerdos:
+	- Revisamos proyectos análogos para el martes
+	- Reunión obligatoria una vez cada dos semanas
+	* Propuesta de Roberto: hacer todo en bash y pasárselo a Python cuando veamos luigi
+	Entregable 21_02: 
+		- Usar DMF para Compranet
+		- Summary sencillo de las variables relacionadas con el objetivo particular
+		- ¿Qué NO podemos asumir como cierto? 
+			- Caveats
+			- NAs
+
+Bibliografía
+http://www.nexos.com.mx/?p=26157
