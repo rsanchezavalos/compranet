@@ -3,8 +3,8 @@ import time
 import sys
 import zipfile
 import requests
-#import xvfbwrapper 
-#import subprocess
+import xvfbwrapper 
+import subprocess
 from random import randint
 from time import sleep
 from selenium import webdriver
@@ -108,29 +108,23 @@ if __name__ == "__main__":
     # Path to be created
     path = "/tmp/" + timestr + "/"
     os.makedirs(path, exist_ok=True)
-    #data = sys.stdin.readlines()
-    #print(funcionarios)
 
     # Get functionarios argument
     funcionarios_list = sys.argv[1].split(',')
     print(funcionarios_list)
-    #print(funcionarios_list.split(','))
-    #funcionarios = sys.stdin.readlines().split(',')
-    #funcionarios_list = [x for x in funcionarios]
     initial_url ="http://servidorespublicos.gob.mx"
 
     # Start Display adn driver
-    #display = xvfbwrapper.Xvfb()
-    #display.start()
+    display = xvfbwrapper.Xvfb()
+    display.start()
     chromedriver = "/usr/bin/chromedriver"
     os.environ["webdriver.chrome.driver"] = chromedriver
     chromeOptions = webdriver.ChromeOptions()
     mime_types = "application/pdf,application/vnd.adobe.xfdf,application/vnd.fdf,application/vnd.adobe.xdp+xml"
     prefs = {"browser.download.folderList":2, "browser.download.dir": u'/home/ubuntu', "browser.download.manager.showWhenStarting":False,"browser.helperApps.neverAsk.saveToDisk":mime_types,"pdfjs.disabled":"true","plugins.plugins_list": [{"enabled":False,"name":"Chrome PDF Viewer"}],"plugin.disable_full_page_plugin_for_types":mime_types}
     chromeOptions.add_experimental_option("prefs",prefs)
-    #self.driver = webdriver.Chrome(chromedriver,chrome_options=chromeOptions)
-    #driver = webdriver.Chrome(chromedriver,chrome_options=chromeOptions)
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(chromedriver,chrome_options=chromeOptions)
+    #driver = webdriver.Chrome()
     driver.implicitly_wait(100)
 
     # Run function 
