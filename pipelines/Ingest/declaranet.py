@@ -118,24 +118,3 @@ if __name__ == "__main__":
 
 #######################################################
 #######################################################
-#sudo apt-get install python3-xvfbwrapper
-# sudo docker run -u 0 -it  --rm --volume=$HOME/cv:$HOME  khozzy/selenium-python-chrome bash
-# #Faltantes
-# sudo pip install requests
-# sudo pip install xvfbwrapper
-# pip install ipython
-# #Parece que ya están cubiertos
-# sudo apt-get install python-pip python-dev build-essential
-# apt-get install curl libcurl3 libcurl3-dev php5-curl
-# sudo apt-get install python3-setuptools
-# sudo apt-get install python3.4
-# curl -O https://bootstrap.pypa.io/get-pip.py
-# python3 get-pip.py --user
-# sudo pip install scrapy
-# sudo pip install selenium
-# sudo apt-get install chromium-browser 
-#sudo apt-get install chromium-browser
-#sudo apt-get install xvfb
-#sudo apt install unzip
-# sudo apt-get install chromium-chromedriver
-# export PATH="/usr/bin/chromedriver:$PATH"
