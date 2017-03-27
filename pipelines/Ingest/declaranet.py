@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 import os
 import time
 import sys
@@ -18,7 +19,7 @@ def Declaranet(funcionarios_list,path):
     print(path)
     driver.get(initial_url) 
 
-    time.sleep(10)
+    #time.sleep(10)
     element = WebDriverWait(driver, 200).until(
         EC.presence_of_element_located((By.CLASS_NAME, "ui-icon-closethick"))
     )
@@ -41,6 +42,11 @@ def Declaranet(funcionarios_list,path):
             time.sleep(3)
             # Find all cases for that name
             results = driver.find_element_by_id('form:tblResultadoConsulta_data').find_elements_by_xpath("//tbody/tr/td")
+
+            if results[0].text == 'Sin Datos':
+                break
+                print("sin datos")
+
             n_results = int(len(results)/2)
             print(n_results)
 
@@ -118,6 +124,8 @@ if __name__ == "__main__":
     display = xvfbwrapper.Xvfb()
     display.start()
     chromedriver = "/usr/bin/chromedriver"
+    chromedriver = "/usr/lib/chromium-browser/chromedriver"
+
     os.environ["webdriver.chrome.driver"] = chromedriver
     chromeOptions = webdriver.ChromeOptions()
     mime_types = "application/pdf,application/vnd.adobe.xfdf,application/vnd.fdf,application/vnd.adobe.xdp+xml"
@@ -133,3 +141,11 @@ if __name__ == "__main__":
 
 #######################################################
 #######################################################
+#parallel*
+#PGOPTIONS="--search_path=raw" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c \
+#        "select  nombre || primer_apellido || segundo_apellido  from raw.funcionarios limit 20;" | uniq | \
+#        awk 1 ORS=',' |  sed -e "s/[,| *,*]$//g;s/^//g;s/,$//g;" > temp.txt
+#sudo cat temp.txt | parallel ipython declaranet.py
+#ipython declaranet.py $( cat temp.txt ) 
+#arguments=$(cat temp.txt)
+#python declaranet.py $arguments
