@@ -142,10 +142,14 @@ if __name__ == "__main__":
 #######################################################
 #######################################################
 #parallel*
-#PGOPTIONS="--search_path=raw" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c \
-#        "select  nombre || primer_apellido || segundo_apellido  from raw.funcionarios limit 20;" | uniq | \
-#        awk 1 ORS=',' |  sed -e "s/[,| *,*]$//g;s/^//g;s/,$//g;" > temp.txt
-#sudo cat temp.txt | parallel ipython declaranet.py
-#ipython declaranet.py $( cat temp.txt ) 
-#arguments=$(cat temp.txt)
-#python declaranet.py $arguments
+# mkdir data/servidores_crawl
+# PGOPTIONS="--search_path=raw" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c \
+#        "select  nombre || primer_apellido || segundo_apellido  from raw.funcionarios;" | uniq > ./data/servidores_crawl/lista.csv 
+# split -d -l 5000 ./data/servidores_crawl/lista.csv ./data/servidores_crawl/servidores
+# cat ./data/servidores_crawl/servidores00 | awk 1 ORS=',' |  sed -e "s/[,| *,*]$//g;s/^//g;s/,$//g;" > ./data/servidores_crawl/temp.txt
+# ipython 
+# with open('./data/servidores_crawl/temp.txt', 'r') as myfile:
+#     data=myfile.read().replace('\n', '')
+# %run ./pipelines/Ingest/declaranet.py data
+# ipython declaranet.py  
+# arguments=$(cat temp.txt)
