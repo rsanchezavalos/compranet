@@ -8,10 +8,12 @@ $( sh ../config/bash_password.sh )
 # Metadatos de Compranet
 # Metadatos de Funcionarios
 # Pipeline de actualización de Base de datos
-
 #sudo apt-get install cpanminus
+
+
 ###############
 # Directorio de Funcionarios públicos
+###############
 echo "Descarga de Directorio Funcionarios Públicos"
 wget -q -O-  'http://portaltransparencia.gob.mx/pot/repoServlet?archivo=directorioPot.zip'| \
 	zcat |  sed -E 's/(^\=|",\=")/,/g;s/("|^ | $|^\,)//g;s/\s+/ /g;s/^\,//g;s/,$//g;' | sed -n '1!p' | 	\
@@ -20,7 +22,8 @@ wget -q -O-  'http://portaltransparencia.gob.mx/pot/repoServlet?archivo=director
 
 
 ###############
-# Directorio de Funcionarios públicos
+# Catálogo de Unidades Compradoras
+###############
 echo "Descarga Catálogo de Unidades Compradoras"
 
 wget --no-check-certificate  'http://upcp.funcionpublica.gob.mx/descargas/UC.zip'| \
@@ -28,8 +31,21 @@ wget --no-check-certificate  'http://upcp.funcionpublica.gob.mx/descargas/UC.zip
 
 cat temp.csv | PGOPTIONS="--search_path=raw" csvsql --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb --insert --table unidades_compradoras 
 
+
+###############
+# Declaranet
+###############
+
+PGOPTIONS="--search_path=raw" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c \
+	"select  nombre || primer_apellido || segundo_apellido  from raw.funcionarios limit 2;" | uniq | \
+	awk 1 ORS=',' |  sed -e "s/[,| *,*]$/'/g;s/^/'/g;s/,'$/'/g;" > temp.txt
+
+
+	| ./declaranet.py
+
 ###############
 # Compranet
+###############
 
 echo "Descarga Compranet De 2002 a 2011"
 # Descargar
