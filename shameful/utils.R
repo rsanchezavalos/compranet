@@ -1,6 +1,11 @@
+##################
+## Packages
+##################
+print("Descargando paquetes")
 .packages = c('lubridate', 'magrittr', 'ggvis', 'dplyr', 'tidyr', 'readr', 'rvest',
               'ggplot2', 'stringr', 'ggthemes', 'googleVis', 'shiny', 'tibble', 'vcd', 'vcdExtra',
-              'GGally','curl','gdata','readxl','ggmap')
+              'GGally','curl','gdata','readxl','ggmap','jsonlite','RPostgreSQL')
+
 
 # Install CRAN packages (if not already installed)
 .inst <- .packages %in% installed.packages()
@@ -9,7 +14,22 @@ if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
 # Load packages into session 
 lapply(.packages, require, character.only=TRUE)
 
-# NA's correlation analysis
+
+##################
+## Create Connection to DB
+##################
+print("Conectandose a CompranetDB")
+conf <- fromJSON("../config/conf_profile.json")
+pg = dbDriver("PostgreSQL")
+con = dbConnect(pg, user=conf$PGUSER, password=conf$PGPASSWORD,
+                host=conf$PGHOST, port=5432, dbname=conf$PGDATABASE)
+con_raw = src_postgres(user=conf$PGUSER, password=conf$PGPASSWORD, host=conf$PGHOST, port=5432, dbname=conf$PGDATABASE,options="-c search_path=raw")
+
+
+
+##################
+## Functions
+##################
 
 fill_NAs <- function(data_frame) {
   for (i in 1:nrow(data_frame)) {
