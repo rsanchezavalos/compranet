@@ -21,15 +21,22 @@ lapply(.packages, require, character.only=TRUE)
 print("Conectandose a CompranetDB")
 conf <- fromJSON("../config/conf_profile.json")
 pg = dbDriver("PostgreSQL")
+
 con = dbConnect(pg, user=conf$PGUSER, password=conf$PGPASSWORD,
                 host=conf$PGHOST, port=5432, dbname=conf$PGDATABASE)
-con_raw = src_postgres(user=conf$PGUSER, password=conf$PGPASSWORD, host=conf$PGHOST, port=5432, dbname=conf$PGDATABASE,options="-c search_path=raw")
-
-
 
 ##################
 ## Functions
 ##################
+#Dplyr connection
+db_schema_con <- function(schema,dbname=conf$PGDATABASE){
+  con = src_postgres(user=conf$PGUSER, 
+                     password=conf$PGPASSWORD, 
+                     host=conf$PGHOST, port=5432, 
+                     dbname=dbname,
+                     options=paste0("-c search_path=",schema))
+  return(con)
+}
 
 fill_NAs <- function(data_frame) {
   for (i in 1:nrow(data_frame)) {
