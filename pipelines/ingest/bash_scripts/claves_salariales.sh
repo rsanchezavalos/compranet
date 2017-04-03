@@ -1,3 +1,7 @@
+#! /bin/bash
+#### Description: Ingestion de claves salariales
+# Descarga inicial de tabla de remuneraciones de funcionarios de la APF 
+
 ###############
 # Claves salariales para discriminación de funcionarios
 ###############
@@ -9,7 +13,7 @@ zcat| sed -E 's/(^\=|",\=")/,/g;s/("|^ | $|^\,)//g;s/\s+/ /g;s/^\,//g;s/,$//g;'|
 csvcut -c 1,2,3,7| \
 sed '1s/.*/institucion,clave_puesto,nombre_puesto,sueldo_puesto/g'| \
 csvgrep -c nombre_puesto_tab -r 'DIRECTOR GENERAL|SECRETARIO|CONTRALOR|TITULAR' | \
-PGOPTIONS="--search_path=raw" csvsql --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb --insert --table claves_salariales 
+PGOPTIONS="--search_path=raw" csvsql --db postgresql://$PGUSER:$PGPASSWORD@$PGHOST --insert --table claves_salariales 
 
 ###############
 # Versión alternativa
