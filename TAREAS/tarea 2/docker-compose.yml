@@ -35,9 +35,5 @@ services:
     container_name: shiny
     environment:
       - VIRTUAL_HOST=shiny.DOMAIN.tld
-    volumes:
-      - /home/your_user/services/volumes/shiny/apps:/srv/shiny-server/
-      - /home/your_user/services/volumes/shiny/logs:/var/log/
-      - /home/your_user/services/volumes/shiny/packages:/home/shiny/
     ports:
       - "2234:2234"
