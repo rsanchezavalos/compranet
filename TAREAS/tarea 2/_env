@@ -1,0 +1,6 @@
+## Variables de la API
+API_PORT=8080
+
+## Variables de PostgreSQL
+POSTGRES_USER=
+POSTGRES_PASSWORD=
