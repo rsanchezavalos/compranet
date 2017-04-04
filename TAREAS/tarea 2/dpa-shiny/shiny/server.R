@@ -8,13 +8,13 @@
 #
 
 library(shiny)
-library(httr)
+library(curl)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  r <- GET("http://localhost:8080/")  
+  req <- curl_fetch_memory("http://localhost:8080/")
   output$text1 <- renderText({ 
-    content(r, "text")
+    content(req, "text")
   })
   
 })

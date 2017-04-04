@@ -1,10 +1,10 @@
-FROM  quantumobject/docker-shiny
+FROM  rocker/shiny
 
 
 # install dependencies
 RUN  apt-get update
-RUN R -e "install.packages('shiny')"
-RUN R  -e "install.packages('httr')"
+
+RUN R  -e "install.packages('curl')"
 
 # Copy the app to the image
 RUN mkdir /root/shiny
