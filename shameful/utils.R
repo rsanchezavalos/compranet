@@ -1,5 +1,5 @@
 ##################
-## Packages
+### Packages
 ##################
 print("Descargando paquetes")
 .packages = c('lubridate', 'magrittr', 'ggvis', 'dplyr', 'tidyr', 'readr', 'rvest',
