@@ -1,5 +1,9 @@
 # coding: utf-8
 # Run as: PYTHONPATH='.' luigi --module pipeline Ingestpipelines --local-scheduler
+#pip install tornado # luigi uses the tornado web server
+#export PATH=$PATH:/home/ubuntu/workspace/luigi/bin
+#export PYTHONPATH=/home/ubuntu/workspace/luigi:.
+#luigid
 
 import os
 from os.path import join, dirname
@@ -31,7 +35,8 @@ class Ingestpipelines(luigi.WrapperTask):
     """
 
     conf = configuration.get_config()
-    ingest_pipelines = parse_cfg_string(conf.get("etl", "pipelines"))
+    #ingest_pipelines = luigi.Parameter()
+    ingest_pipelines = parse_cfg_string(conf.get("Ingestpipelines", "ingest_pipelines"))
 
     def requires(self):
         tasks = []

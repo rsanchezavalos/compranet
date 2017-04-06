@@ -1,0 +1,4 @@
+include README.md
+include tox.ini
+include requirements.txt
+include requirements-dev.txt

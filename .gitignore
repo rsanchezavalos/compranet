@@ -89,27 +89,55 @@ ENV/
 .ropeproject
 
 
-############
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
-*.db
-*.csv
-
-# OS generated files #
-######################
-.RData
+# Porquerías de MacOS
 .DS_Store
-.DS_Store?
-.Rproj.user
-.Rhistory
+
+# Documentación de Sphinx
+docs/_build
+
+# Los datos no se suben a git
+**/data/
+
+# Bases de datos
+*.db
+
+# Logs de instalación
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pruebas unitarias / Coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# Documentación de Mkdocs
+site/
+
+# Archivos de datos
+*.xlsx
+*.dat
+*.csv
+*.tsv
+*.psv
+*.sqlite
+*.doc*
+*.xls*
+*.pdf
+*.ppt*
+*.sqlite
+
+# De la construcción de imágenes y contenedores
+**/.built*
+**/*_built*
+**/.data_built*
+**/.infrastructure_built*
+**/.network_built*
+**/.running*
+
+# Basura de Emacs
+**/.#*

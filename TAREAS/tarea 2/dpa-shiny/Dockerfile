@@ -5,13 +5,9 @@ RUN  apt-get update
 RUN R -e "install.packages('shiny')"
 RUN R -e "install.packages('curl')"
 
-
 # copy the app to the image
 RUN mkdir /root/shiny
 COPY shiny /root/shiny
-
-
-
 
 EXPOSE 2234
 
