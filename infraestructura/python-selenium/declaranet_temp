@@ -1,0 +1,112 @@
+#docker run --rm -it khozzy/selenium-python-chrome bash
+#https://github.com/khozzy/docker/blob/master/selenium_python_chrome/Dockerfile
+
+
+#docker run -it ubuntu bash
+apt-get update
+apt-get --yes  install build-essential checkinstall
+apt-get --yes install libxss1 libappindicator1 libindicator7
+apt-get --yes install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-devsudo 
+
+apt-get --yes install wget unzip curl xvfb xz-utils zlib1g-dev libssl-dev
+ 
+#==================
+# Python 2.7.12
+#==================
+
+version=2.7.12
+cd ~/Downloads/
+wget https://www.python.org/ftp/python/$version/Python-$version.tgz
+Extract and go to the directory:
+
+tar -xvf Python-$version.tgz
+cd Python-$version
+./configure
+make
+sudo make altinstall
+alias python=python2.7
+
+apt-get install -qy python python-dev python-distribute python-pip ipython
+apt-get install -qy firefox unzip
+pip install selenium xvfbwrapper beautifulsoup4 requests 
+
+#===============
+# Google Chrome
+#===============
+sudo apt-get update
+sudo apt-get --yes install postgresql-client
+
+
+#===============
+# Google Chrome
+#===============
+
+sudo dpkg -i google-chrome*.deb
+sudo apt-get --yes install -f
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt-get install chromium-chromedriver
+
+sudo dpkg -i google-chrome*.deb
+sudo apt-get --yes install -f
+
+#==================
+# Chrome webdriver
+#==================
+
+apt-get install unzip
+
+wget -N http://chromedriver.storage.googleapis.com/2.27/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+chmod +x chromedriver
+
+mv -f chromedriver /usr/local/share/chromedriver
+ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+
+
+#sudo docker run -u 0 -it  --rm --volume=$HOME/cv:$HOME  khozzy/selenium-python-chrome bash
+#Faltantes
+
+#selenium requests xvfbwrapper ipython
+#Parece que ya están cubiertos
+
+#sudo apt-get install python-pip python-dev build-essential
+#apt-get install curl libcurl3 libcurl3-dev php5-curl
+#sudo apt-get install python3-setuptools
+#sudo apt-get install python3.4
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+sudo pip install scrapy
+
+#sudo apt-get install chromium-browser 
+sudo apt-get install chromium-browser
+sudo apt-get install xvfb
+sudo apt install unzip
+
+apt-get install chromium-chromedriver
+export PATH="/usr/bin/chromedriver:$PATH"
+sudo pip install parallel
+sudo apt-get install parallel
+
+
+#parallel*
+mkdir data/servidores_crawl
+PGOPTIONS="--search_path=raw" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c \
+
+
+
+
+
+ipython 
+with open('./data/servidores_crawl/temp.txt', 'r') as myfile:
+     data=myfile.read().replace('\n', '')
+
+python ./pipelines/Ingest/declaranet.py $arguments
+ipython -i -c declaranet.py  $arguments
+
+tar cvzf 20170327-032235.tar.gz 20170327-032235
+AWS_ACCESS_KEY_ID=AKIAIF56RW25IC4AF46A AWS_SECRET_ACCESS_KEY=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 aws s3 cp ./20170327-032235.tar.gz s3://compranet-cv/20170327-032235.tar.gz  
+
+xvfbwrapper===0.2.9
+
+

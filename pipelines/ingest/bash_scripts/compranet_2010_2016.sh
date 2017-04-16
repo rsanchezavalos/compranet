@@ -7,16 +7,19 @@
 #parallel
 #ssconvert
 
-echo "Descarga Compranet De $1 "
+echo "Descarga Compranet De 2010 a 2016"
 
 # Create temporal directory
-mkdir ../data/$1
+mkdir ../data/compranet_2010_2016
 
-wget --no-check-certificate  https://upcp.funcionpublica.gob.mx/descargas/Contratos$1.zip -P \
-	../data/$1
+# Download Historic
+wget --no-check-certificate  https://compranetinfo.funcionpublica.gob.mx/descargas/cnet/Contratos2010_2012.zip -P \
+	../data/compranet_2010_2016
+wget --no-check-certificate  https://upcp.funcionpublica.gob.mx/descargas/Contratos{2013..2016}.zip -P \
+	../data/compranet_2010_2016
 
-for f in $( ls ../data/$1/*.zip ); do unzip "$f" -d ../data/compranet_2010_2016; done; 
-rm ../data/$1/*.zip
+for f in $( ls ../data/compranet_2010_2016/*.zip ); do unzip "$f" -d ../data/compranet_2010_2016; done; 
+rm ../data/compranet_2010_2016/*.zip
 
 find ../data/compranet_2010_2016 -name '*.xlsx' | parallel ssconvert -D ../data/compranet_2010_2016/ -T Gnumeric_stf:stf_csv {} \; \
  && rm ../data/compranet_2010_2016/*.xlsx

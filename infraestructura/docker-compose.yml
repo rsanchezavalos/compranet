@@ -1,0 +1,95 @@
+version: "3"
+
+services:                                                                               
+  luigi-server:                                                                         
+    image: dpa/luigi-server:0.1
+    ports:                                                                              
+      - "8082:8082"
+    networks:
+      - compranet_net
+
+
+  db:
+    image: postgres:9.6
+    env_file: .env 
+    ports:
+      - "5432:5432"
+    networks:
+      - compranet_net
+
+  graphdb:
+    image: neo4j:3.1
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    networks:
+      - compranet_net
+
+
+  master:
+    image: gettyimages/spark
+    command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+    hostname: master
+    environment:
+      MASTER: spark://master:7077
+      SPARK_CONF_DIR: /conf
+      SPARK_PUBLIC_DNS: localhost
+    expose:
+      - 7001
+      - 7002
+      - 7003
+      - 7004
+      - 7005
+      - 7006
+      - 7077
+      - 6066
+    ports:
+      - 4040:4040
+      - 6066:6066
+      - 7077:7077
+      - 8080:8080
+    volumes:
+      - ./conf/master:/conf
+      - compranet_store:/compranet/data
+    networks:
+      - compranet_net
+
+
+  worker:
+    image: gettyimages/spark
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
+    hostname: worker
+    environment:
+      SPARK_CONF_DIR: /conf
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_WORKER_PORT: 8881
+      SPARK_WORKER_WEBUI_PORT: 8081
+      SPARK_PUBLIC_DNS: localhost
+    expose:
+      - 7012
+      - 7013
+      - 7014
+      - 7015
+      - 7016
+      - 8881
+    ports:
+      - 8081:8081
+    volumes:
+      - ./conf/worker:/conf
+      - compranet_store:/compranet/data
+    depends_on:
+      - master
+    networks:
+      - compranet_net
+
+
+volumes:
+  compranet_store:
+    external:
+      name: compranet_store
+
+networks:
+  compranet_net:
+    external: true
+

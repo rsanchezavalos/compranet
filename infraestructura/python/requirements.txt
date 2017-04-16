@@ -1,0 +1,9 @@
+numpy==1.11.2
+boto3==1.4.3
+filechunkio==1.8
+ibis-framework==0.9.0
+psycopg2==2.6.2
+SQLAlchemy==1.1.4
+requests==2.12.4
+selenium
+xvfbwrapper===0.2.9
