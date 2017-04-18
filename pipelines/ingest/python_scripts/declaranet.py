@@ -188,8 +188,8 @@ def Declaranet(funcionarios_list,path):
         
 if __name__ == "__main__":
 
-    # Get funcionarios as argument
-    funcionario_path = sys.argv[1].split(',') if len(sys.argv) >= 2 else 'temp.txt'
+    # Get funcionarios_path as argument
+    funcionario_path = sys.argv[1] if len(sys.argv) >= 2 else ""
 
     # Get funcionarios from file
     with open('./data/servidores_crawl/'+ str(funcionario_path), 'r') as myfile:

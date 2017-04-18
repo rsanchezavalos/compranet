@@ -12,10 +12,6 @@ find ../data/unidades_compradoras/*.xlsx | ssconvert -T Gnumeric_stf:stf_csv ../
   -L ../data/unidades_compradoras/ ../data/unidades_compradoras.csv 
 rm ../data/unidades_compradoras/*.xlsx 
 
-function cleanup {      
-  rm -rf ../data/unidades_compradoras
-  echo "Deleted temp working directory ../data/unidades_compradoras"
-}
+echo "Deleted temp working directory ../data/unidades_compradoras"
+rm -rf ../data/unidades_compradoras
 
-# register the cleanup function to be called on the EXIT signal
-trap cleanup EXIT
