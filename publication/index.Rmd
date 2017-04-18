@@ -1,0 +1,25 @@
+--- 
+title: "Detecting collusion in goverment procurement contracts"
+author: "Manuel Aragonés, Thalía Guerra, Roberto Sánchez and Mónica Zamudio"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This publication is the result of five months of work for our Data Product Architecture class project."
+---
+
+# Abstract
+
+*Since 2002, the Mexican Federal government handles most of its procurement biddings through a transactional platform called Compranet. Even though most of the information in the platform is public, authorities and organizations dedicated to fight corruption do not have a technical framework to better allocate their resources into cases.*
+
+*Our project consisted in developing an interactive dashboard for investigators to track particular contracts and to filter out low-risk cases.*
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

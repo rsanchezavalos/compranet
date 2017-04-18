@@ -1,0 +1,8 @@
+# Feature selection and Modeling
+Our project implies two different types of analysis. The first one is supervised and the second one is unsupervised.
+
+## Supervised learning
+The Compranet platform has public data on sactioned officials and the particular procedure for which they were sanctioned, which allows for testing a wide range of supervised models for predicting fraud. An important problem to take into account for this approach is that non-sanctioned officials might be involved in a wider range of corrupt activities, but have enough political power to avoid being ever sanctioned.
+
+## Unsupervised learning
+This approach involves using constructed the work relations data in order to evaluate contract-level risk. 

@@ -1,0 +1,17 @@
+# Background
+
+According to the Organization for Economic Cooperation and Development (OECD), developed economies spend, on average, 12% of their Gross Domestic Product (GDP) on public purchases. In Mexico, such purchases account for between 11% and 12% of the GDP and represent between 30% and 40% of government expenses [gonzalez2015] [unodc2014].
+
+In Mexico, public purchases is one of the governmental activities with more risk of corruption, fraud, illicit enrichment and lack of competition despite being subject to standardized processes and being regulated by the Ley de Adquisiciones, Arrendamientos y Servicios del Sector Público, Ley de Obras Públicas y Servicios, and Ley Federal de Competencia Económica.
+
+Legal dispositions on public purchases give preference to adjudication through public licitations, which allow for the development of an effective competition environment. However, despite the budgetary constraints imposed over direct adjudications, they are very common in some dependencies which evade the budgetary constraints adjudicating atomized contracts. Even when the adjudication is made through public licitations, there are some known cases of collusion among providers which lead to higher prices for the good or service being provided to the government. As collusion is not easily detected, procurement regulation has become increasingly complex. Even with the increased complexity, the government has not been able to identify collusion among providers and the procurements have been hindered by bureaucratic processes that increase proposal and delivery times and do not benefit the quality of the good or service being provided. The Auditoria Superior de la Federacion has declared that even if regulation is fulfilled, contracts don’t pose a net benefit for the State [asf2014]. Several academics [boyer2015] [connor2008] calculate that lack of competition and collusion among government providers can result in a 17 to 36% overcharge.
+
+```{r, eval = F}
+knitr::include_graphics("images/public_purchases.png")
+```
+
+```{r, eval = F}
+knitr::include_graphics("images/coneval.png")
+```
+
+Monitoring illicit activities is not easy because it involves complex strategies, interlined dynamic systems and dynamic patterns that allow the agents to hide them in plain sight and disguise them as licit activities which, in paper, comply with all the regulations. This is why it is necessary to design innovative techniques and methodologies that may identify such patterns. In this sense, we propose to apply data science techniques applied to complex environments and structural analysis to graph networks to identify associations between all different agents involved in public purchases [rababah2017].
