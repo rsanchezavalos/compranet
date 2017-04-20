@@ -55,4 +55,3 @@ Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Func
 [ph-rsanchez]: https://avatars.githubusercontent.com/u/10931011?v=3&s=460
 [gh-rsanchez]: https://github.com/rsanchezavalos
 
-
