@@ -14,7 +14,7 @@ from luigi import configuration
  
 logger = logging.getLogger("dpa-compranet.dummy")
 from utils.pg_compranet import parse_cfg_list
-from ingest.ingest_orchestra import update_dbs
+from ingest.ingest_orchestra import update_dbs, bash_ingestion_s3
  
 ## Variables de ambiente
 path = os.path.abspath('__file__' + "/../../config/")
@@ -55,8 +55,6 @@ class Ingestpipeline(luigi.WrapperTask):
  
         #for pipeline in self.docker_pipelines:
         #    yield docker_ingestion_s3(pipeline)
- 
- 
  
  
  
