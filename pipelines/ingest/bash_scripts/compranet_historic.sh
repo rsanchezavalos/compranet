@@ -62,6 +62,3 @@ cat ../data/compranet_2010_2016/2010_2016.csv | sed '1s/.*/GOBIERNO|SIGLAS|DEPEN
 
 rm -rf ../data/compranet_2010_2016
 echo "Deleted temp working directory compranet_2010_2016"
-
-# # register the cleanup function to be called on the EXIT signal
-trap cleanup EXIT

@@ -1,7 +1,0 @@
-{
-	"PGPORT": 5432,
-	"PGHOST": "host",
-	"PGDATABASE": "database",
-	"PGUSER": "user",
-	"PGPASSWORD": "password"
-}
