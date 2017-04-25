@@ -37,6 +37,7 @@ db_schema_con <- function(schema,dbname=conf$PGDATABASE){
   return(con)
 }
 
+
 # Fix variables
 
 fix_Ramo <- function(data_frame, column) {
