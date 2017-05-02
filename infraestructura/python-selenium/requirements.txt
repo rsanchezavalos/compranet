@@ -1,10 +1,9 @@
+xvfbwrapper 
+selenium
+requests==2.13.0
+beautifulsoup4 
 numpy==1.11.2
 boto==2.45.0
 boto3==1.4.3
-#psycopg2==2.6.2
-#mysqlclient==1.3.9
-#SQLAlchemy==1.1.4
-selenium
-requests==2.12.4
-Click==6.6
-ipython
+psycopg2==2.6.2
+smart_open
