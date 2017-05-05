@@ -65,7 +65,12 @@ fill_NAs <- function(data_frame) {
     for (j in 1:ncol(data_frame)) {
       ifelse(data_frame[i,j] == '',
              data_frame[i,j] <- NA,
-             data_frame[i,j] <- data_frame[i,j])
+             ifelse(data_frame[i, j] == '.',
+                    data_frame[i,j] <- NA,
+                    ifelse(data_frame[i, j] == '---',
+                           data_frame[i,j] <- NA,
+                           data_frame[i,j] <- data_frame[i,j])))
+                    
     }
   }
   

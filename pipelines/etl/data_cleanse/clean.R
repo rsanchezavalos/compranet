@@ -8,12 +8,12 @@ source("./utils.R")
 
 con_raw <- db_schema_con("raw")
 
+data <- fill_NAs(data)
 
 data <- fix_Ramo(con_raw)
 
 data <- fix_Folio(data)
 
-data <- fill_NAs(data)
 
 con = src_postgres(user=conf$PGUSER, 
                    password=conf$PGPASSWORD, 
