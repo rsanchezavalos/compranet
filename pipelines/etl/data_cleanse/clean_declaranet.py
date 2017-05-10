@@ -24,13 +24,14 @@ def fill_with_near(data):
 	for i in range(len(indexes)):
 		low_index = indexes[i] - d0
 		high_index = indexes[i] + d0
-		if i == len(indexes):
+		#Hack para que no truene el último paso
+		if i == len(indexes)-1:
 			d0 = 0
-			high_index = indexes[i]
 		else:
 			d0 = indexes[i+1] - (indexes[i] + d0)
 		row_indexes = list(range(low_index, high_index + 1))
 		for col in range(1, len(data.columns)):
-			joint_col = data.iloc[row_indexes, col].str.cat(sep = '')
+			joint_col = data.loc[row_indexes, data.columns[col]].str.cat(sep = ' ')
 			name_rows.loc[indexes[i], data.columns[col]] = joint_col
+	name_rows = name_rows.apply(lambda x: x.str.strip())
 	return(name_rows)
