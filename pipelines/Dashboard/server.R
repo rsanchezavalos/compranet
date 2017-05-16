@@ -248,7 +248,7 @@ shinyServer(function(input, output) {
     grafo <- neo()
     
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
-              RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) as weight
+              RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) AS weight
               ORDER BY weight DESC'
     
     funcionarios_empresas_concentracion <- cypher(grafo, query)
@@ -270,7 +270,7 @@ shinyServer(function(input, output) {
     grafo <- neo()
     
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
-              RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) as weight
+              RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) AS weight
               ORDER BY weight DESC'
     
     funcionarios_empresas_concentracion <- cypher(grafo, query)
@@ -301,7 +301,7 @@ shinyServer(function(input, output) {
     grafo <- neo()
 
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
-              RETURN fun.id AS funcionario, count(*) as weight
+              RETURN fun.id AS funcionario, count(*) AS weight
               ORDER BY weight DESC'
     
     funcionarios_empresas <- cypher(grafo, query)
