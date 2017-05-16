@@ -2,7 +2,7 @@ library(shiny)
 library(DT)
 library(RNeo4j)
 library(dplyr)
-library(visNetwork)
+library(ggplot2)
 
 shinyUI(fluidPage(
   
@@ -23,7 +23,9 @@ shinyUI(fluidPage(
                column(6, plotOutput('grafica_compras', height = 500))),
       
       tabPanel('Funcionarios', 
-               column(7, tableOutput('rel_funcionario_proveedor'))),
+               column(7, tableOutput('rel_funcionario_proveedor')),
+               column(7, plotOutput('grafica_funcionario_2')),
+               column(7, plotOutput('grafica_funcionario_1'))),
       
       tabPanel('Proveedores', 
                column(7, DT::dataTableOutput('tabla_proveedores')),

@@ -2,7 +2,7 @@ library(shiny)
 library(DT)
 library(RNeo4j)
 library(dplyr)
-library(visNetwork)
+library(ggplot2)
 
 source('./utils.R')
 
@@ -14,6 +14,7 @@ shinyServer(function(input, output) {
   compranet <- reactive({
     # Abrir base de datos compranet
     compranet <- db_schema_con("raw")
+    compranet <- tbl(compranet, "compranet")
     collect(compranet)
   })
   
@@ -263,5 +264,57 @@ shinyServer(function(input, output) {
     tabla
     
   })
+  
+  output$grafica_funcionario_1 <- renderPlot({
+
+    query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
+              RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) as weight
+              ORDER BY weight DESC'
     
+    funcionarios_empresas_concentracion <- cypher(graph, query)
+        
+    plot <- funcionarios_empresas_concentracion %>%
+      group_by(funcionario) %>%
+      mutate(distintas = (weight/sum(weight))^2) %>%
+      summarise(concentracion = sum(distintas)) %>%
+      arrange(-concentracion) %>%
+      ggplot() +
+      geom_histogram(aes(concentracion),
+                     binwidth = .008,
+                     color = 'steelblue4',
+                     fill = 'steelblue4') +
+      labs(title = 'Concentración en relaciones de funcionarios',
+           x = '', y = '') +
+      coord_flip() +
+      scale_x_continuous(labels = scales::percent) +
+      theme_bw()
+    
+    plot
+    
+  })  
+  
+  
+  output$grafica_funcionario_2 <- renderPlot({
+    
+    query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
+              RETURN fun.id AS funcionario, count(*) as weight
+              ORDER BY weight DESC'
+    
+    funcionarios_empresas <- cypher(graph, query)
+    
+    plot <- funcionarios_empresas %>%
+      ggplot() +
+      geom_histogram(aes(weight),
+                     binwidth = 1,
+                     color = 'tomato4',
+                     fill = 'tomato4') +
+      labs(title = 'Centralidad pesada de funcionarios',
+           x = '', y = '') +
+      theme_bw()
+    
+    plot
+    
+  })  
+  
+  
 })
