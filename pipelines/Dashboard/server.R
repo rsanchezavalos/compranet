@@ -249,14 +249,15 @@ shinyServer(function(input, output) {
   output$rel_funcionario_proveedor <- renderTable({
     
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
-              RETURN fun.id AS funcionario, count(*) as weight
-              ORDER BY weight DESC LIMIT 5'
+              RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) as weight
+              ORDER BY weight DESC'
     
-    empresas_concentracion <- cyper(graph(), query)
+    funcionarios_empresas_concentracion <- cypher(graph, query)
     
-    funcionarios_empresas_concentracion %>%
+    tabla <- funcionarios_empresas_concentracion %>%
       group_by(funcionario) %>%
-      tabla <- summarise(distintas = n()/sum(weight))
+      mutate(distintas = (weight/sum(weight))^2) %>%
+      summarise(concentracion = sum(distintas))
     
     tabla
     
