@@ -14,6 +14,7 @@ shinyServer(function(input, output) {
   compranet <- reactive({
     # Abrir base de datos compranet
     compranet <- db_schema_con("raw")
+    collect(compranet)
   })
   
   neo <- reactive({
