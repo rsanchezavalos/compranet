@@ -13,7 +13,7 @@ shinyServer(function(input, output) {
   
   compranet <- reactive({
     # Abrir base de datos compranet
-    compranet <- db_schema_con("raw")
+    compranet <- db_schema_con("clean")
     compranet <- tbl(compranet, "compranet")
     collect(compranet)
   })
