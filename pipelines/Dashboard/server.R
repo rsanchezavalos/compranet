@@ -1,19 +1,25 @@
 library(shiny)
 library(DT)
+library(RNeo4j)
+library(dplyr)
+
+source('./utils.R')
 
 # agregar también por año
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
-#  compranet <- reactive({
+  compranet <- reactive({
     # Abrir base de datos compranet
-    
-#  })
+    compranet <- db_schema_con("raw")
+  })
   
-#  neo <- reactive({
+  neo <- reactive({
     # Conectar con neo4j
-#  })
+    graph = startGraph("http://ec2-54-69-4-123.us-west-2.compute.amazonaws.com:7474/db/data/")
+    dependencia = getLabeledNodes(graph, "Dependencia")
+  })
   
 #  indices <- reactive({
     # Abrir resultados de los indices
