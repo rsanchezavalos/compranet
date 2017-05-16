@@ -139,8 +139,6 @@ shinyServer(function(input, output) {
     
     datos2 <- datos[which(datos$DEPENDENCIA %in% tabla2[ , 'DEPENDENCIA']), ]
     
-    hist(datos$IMPORTE_CONTRATO, breaks = 200)
-    
     ifelse(length(sel > 0),
            grafica <- hist(datos2$IMPORTE_CONTRATO, breaks = 200),
            grafica <- hist(datos$IMPORTE_CONTRATO, breaks = 200))
@@ -172,9 +170,7 @@ shinyServer(function(input, output) {
     
     tabla2 <- tabla[sel, ]
     
-    datos2 <- datos[which(datos$NOMBRE_DE_LA_UC %in% tabla2[ , 'DEPENDENCIA']), ]
-    
-    hist(datos$IMPORTE_CONTRATO, breaks = 200)
+    datos2 <- datos[which(datos$NOMBRE_DE_LA_UC %in% tabla2[ , 'UNIDAD_COMPRADORA']), ]
     
     ifelse(length(sel > 0),
            grafica <- hist(datos2$IMPORTE_CONTRATO, breaks = 200),
@@ -201,9 +197,7 @@ shinyServer(function(input, output) {
     
     tabla2 <- tabla[sel, ]
     
-    datos2 <- datos[which(datos$TITULO_EXPEDIENTE %in% tabla2[ , 'DEPENDENCIA']), ]
-    
-    hist(datos$IMPORTE_CONTRATO, breaks = 200)
+    datos2 <- datos[which(datos$TITULO_EXPEDIENTE %in% tabla2[ , 'DESCRIPCION DE LA COMPRA']), ]
     
     ifelse(length(sel > 0),
            grafica <- hist(datos2$IMPORTE_CONTRATO, breaks = 200),
@@ -236,9 +230,7 @@ shinyServer(function(input, output) {
     
     tabla2 <- tabla[sel, ]
     
-    datos2 <- datos[which(datos$PROVEEDOR_CONTRATISTA %in% tabla2[ , 'DEPENDENCIA']), ]
-    
-    hist(datos$IMPORTE_CONTRATO, breaks = 200)
+    datos2 <- datos[which(datos$PROVEEDOR_CONTRATISTA %in% tabla2[ , 'PROVEEDOR']), ]
     
     ifelse(length(sel > 0),
            grafica <- hist(datos2$IMPORTE_CONTRATO, breaks = 200),
