@@ -255,10 +255,9 @@ shinyServer(function(input, output) {
     
     tabla <- funcionarios_empresas_concentracion %>%
       group_by(funcionario) %>%
-      mutate(distintas = (weight/sum(weight))^2) %>%
-      summarise(concentracion = sum(distintas)) %>%
-      arrange(
-        concentracion)
+      mutate(weight/sum(weight)^2) %>%
+      summarise(concentracion = sum(weight/sum(weight)^2)) %>%
+      arrange(concentracion)
     
     tabla <- head(tabla)
     
@@ -278,8 +277,8 @@ shinyServer(function(input, output) {
         
     plot <- funcionarios_empresas_concentracion %>%
       group_by(funcionario) %>%
-      mutate(distintas = (weight/sum(weight))^2) %>%
-      summarise(concentracion = sum(distintas)) %>%
+      mutate(weight/sum(weight)^2) %>%
+      summarise(concentracion = sum(weight/sum(weight)^2)) %>%
       arrange(-concentracion) %>%
       ggplot() +
       geom_histogram(aes(concentracion),
