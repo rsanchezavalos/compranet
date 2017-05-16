@@ -22,6 +22,9 @@ shinyServer(function(input, output) {
     # Conectar con neo4j
     graph = startGraph("http://ec2-54-69-4-123.us-west-2.compute.amazonaws.com:7474/db/data/")
     dependencia = getLabeledNodes(graph, "Dependencia")
+    
+    graph
+    
   })
   
 #  indices <- reactive({
@@ -170,7 +173,7 @@ shinyServer(function(input, output) {
     
     tabla2 <- tabla[sel, ]
     
-    datos2 <- datos[which(datos$NOMBRE_DE_LA_UC %in% tabla2[ , 'UNIDAD_COMPRADORA']), ]
+    datos2 <- datos[which(datos$NOMBRE_DE_LA_UC %in% tabla2[ , 'UNIDAD COMPRADORA']), ]
     
     ifelse(length(sel > 0),
            grafica <- hist(datos2$IMPORTE_CONTRATO, breaks = 200),
@@ -197,7 +200,7 @@ shinyServer(function(input, output) {
     
     tabla2 <- tabla[sel, ]
     
-    datos2 <- datos[which(datos$TITULO_EXPEDIENTE %in% tabla2[ , 'DESCRIPCION DE LA COMPRA']), ]
+    datos2 <- datos[which(datos$TITULO_EXPEDIENTE %in% tabla2[ , 'DESCRIPCIÓN DE LA COMPRA']), ]
     
     ifelse(length(sel > 0),
            grafica <- hist(datos2$IMPORTE_CONTRATO, breaks = 200),
@@ -242,16 +245,22 @@ shinyServer(function(input, output) {
   
   output$rel_funcionario_proveedor <- renderTable({
     
+    grafo <- neo()
+    
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
               RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) as weight
               ORDER BY weight DESC'
     
-    funcionarios_empresas_concentracion <- cypher(graph, query)
+    funcionarios_empresas_concentracion <- cypher(grafo, query)
     
     tabla <- funcionarios_empresas_concentracion %>%
       group_by(funcionario) %>%
       mutate(distintas = (weight/sum(weight))^2) %>%
-      summarise(concentracion = sum(distintas))
+      summarise(concentracion = sum(distintas)) %>%
+      arrange(
+        concentracion)
+    
+    tabla <- head(tabla)
     
     tabla
     
@@ -259,11 +268,13 @@ shinyServer(function(input, output) {
   
   output$grafica_funcionario_1 <- renderPlot({
 
+    grafo <- neo()
+    
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
               RETURN p.nombre AS empresa, fun.id AS funcionario, count(*) as weight
               ORDER BY weight DESC'
     
-    funcionarios_empresas_concentracion <- cypher(graph, query)
+    funcionarios_empresas_concentracion <- cypher(grafo, query)
         
     plot <- funcionarios_empresas_concentracion %>%
       group_by(funcionario) %>%
@@ -288,11 +299,13 @@ shinyServer(function(input, output) {
   
   output$grafica_funcionario_2 <- renderPlot({
     
+    grafo <- neo()
+
     query <- 'MATCH (p:Proveedor)<-[dp:del_proveedor]-(c:Compra)<-[adq:adquirio]-(f:Fecha)-[per:pertenecio]->(fun:Funcionario)
               RETURN fun.id AS funcionario, count(*) as weight
               ORDER BY weight DESC'
     
-    funcionarios_empresas <- cypher(graph, query)
+    funcionarios_empresas <- cypher(grafo, query)
     
     plot <- funcionarios_empresas %>%
       ggplot() +
