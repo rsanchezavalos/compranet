@@ -10,13 +10,15 @@ RUN apt-get update && \
 
 RUN apt-get -y install python-pip
 
+RUN apt-get -y install chromium-chromedriver
+
 RUN apt-get update; \
   apt-get --yes  install build-essential checkinstall && \
   apt-get --yes install libxss1 libappindicator1 libindicator7  && \
   apt-get --yes install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev && \
   apt-get --yes install wget unzip curl xvfb xz-utils zlib1g-dev libssl-dev
 
-RUN apt-get --yes install libxss1 libappindicator1 libindicator7
+RUN apt-get --yes install libxss1 libappindicator1 libindicator7 libpango1.0-0 fonts-liberation
 
 #==================
 # Python 2.7.12
@@ -66,7 +68,6 @@ RUN  mv -f chromedriver /usr/local/share/chromedriver &&\
 #  apt-get -y install xorg default-jre rungetty gtk2-engines-pixbuf 
 
 
-RUN apt-get install chromium-chromedriver
 
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt

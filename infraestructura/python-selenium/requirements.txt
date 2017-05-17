@@ -5,5 +5,4 @@ beautifulsoup4
 numpy==1.11.2
 boto==2.45.0
 boto3==1.4.3
-psycopg2==2.6.2
 smart_open

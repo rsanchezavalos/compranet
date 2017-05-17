@@ -1,4 +1,4 @@
-FROM python-selenium:0.1
+FROM dpa/python-selenium:0.1
 
 ENV PROJECT_NAME declaranet
 
@@ -14,6 +14,6 @@ RUN unzip master.zip
 
 WORKDIR /${PROJECT_NAME}/burocratas-cv-master
 
-ADD ./declaranet.py declaranet.py
+#ADD ./declaranet.py declaranet.py
 
-ENTRYPOINT [ "python", "declaranet.py" ]
+ENTRYPOINT [ "python", "get-declaranet.py" ]

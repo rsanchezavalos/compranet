@@ -18,7 +18,7 @@ PROJECT_VERSION:=$(shell cat .project-version)
 VERSION_PYTHON:=$(shell cat .python-version)
 
 ## Bucket de amazon
-S3_BUCKET := s3://$(PROJECT_NAME)/
+S3_BUCKET := s3://dpa-$(PROJECT_NAME)/
 
 SHELL := /bin/bash 
 
@@ -36,7 +36,7 @@ help:   ##@ayuda Diálogo de ayuda
 
 init: prepare ##@dependencias Prepara la computadora para el funcionamiento del proyecto
 
-prepare: deps
+prepare: deps 
 #	pyenv virtualenv ${PROJECT_NAME}_venv
 #	pyenv local ${PROJECT_NAME}_venv
 

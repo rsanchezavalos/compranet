@@ -4,10 +4,11 @@
 ##            Variables               ##
 ########################################
 SHELL := /bin/bash 
-PROJECT_NAME:=dummy
+PROJECT_NAME:=compranet
 DATA_DIRECTORY:=$(CURDIR)/../data
-
-IMAGES = base python r java luigi-server luigi-worker spark-client hadoop-client
+DOCKER_REGISTRY:= "localhost:5000"
+IMAGES = python luigi-server luigi-worker python-selenium
+#base python r java luigi-server luigi-worker spark-client hadoop-client
 IMAGE_VERSION:=0.1
 
 ########################################
@@ -23,18 +24,20 @@ setup: create up
 up: .running
 
 .running:
+	# Esto corre en infraestructura
 	@docker-compose --project-name ${PROJECT_NAME} up -d
 	@touch .running
 
 
-create: .data_built .network_built .images_built
-
+create: .network_built .images_built .data_built #.network_built .images_built
 
 .images_built:
 	@for image in $(IMAGES) ; do \
-	 	 docker build --tag dpa/$$image:$(IMAGE_VERSION) --tag dpa/$$image:latest $$image ; \
+	    sudo docker build --tag $$DOCKER_REGISTRY/dpa/$$image:${IMAGE_VERSION} --tag dpa/$$image:latest --tag dpa/$$image:$(IMAGE_VERSION) $$image ; \
+	    sudo docker push $$DOCKER_REGISTRY/dpa/$$image:$(IMAGE_VERSION); \
 	 done
 	@touch .images_built
+
 
 .data_built:
 	echo ${DATA_DIRECTORY}
@@ -42,7 +45,7 @@ create: .data_built .network_built .images_built
 	@touch .data_built
 
 .network_built:
-	@docker network create ${PROJECT_NAME}_net
+	@docker network create --driver overlay --subnet=10.0.9.0/24 --attachable ${PROJECT_NAME}_net
 	@touch .network_built
 
 

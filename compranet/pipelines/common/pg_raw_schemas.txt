@@ -1,0 +1,137 @@
+# Este Archivo almacena el Schema de las tablas de Postgres como un 
+# diccionario para ser consumidas por Luigi
+
+# Define el Schema de las tablas de raw y el Índice de cada tabla
+
+{ 
+     "unidades_compradoras": 
+     {    "SCHEMA":
+               [("id_dep_ent", "INT"),
+               ("siglas", "TEXT"),
+               ("dependencia_entidad", "TEXT"),
+               ("ramo", "TEXT"),
+               ("clave_cnet30", "TEXT"),
+               ("clave_uc", "TEXT"),
+               ("nombre_uc", "TEXT"),
+               ("rfc", "TEXT"),
+               ("estado", "TEXT"),
+               ("delegacion_municipio", "TEXT"),
+               ("telefono_uc", "TEXT"),
+               ("direccion", "TEXT"),
+               ("cp", "TEXT"),
+               ("pagina_web", "TEXT"),
+               ("tipo", "TEXT"),
+               ("zona_horaria", "TEXT"),
+               ("responsable", "TEXT"),
+               ("puesto", "TEXT")], 
+          "INDEX":
+          ['clave_uc']
+     },
+
+     "funcionarios":
+     {    "SCHEMA":
+               [("institucion", "TEXT"),
+               ("nombre", "TEXT"),
+               ("primer_apellido", "TEXT"),
+               ("segundo_apellido", "TEXT"),
+               ("telefono", "TEXT"),
+               ("tipo_personal", "TEXT"),
+               ("cargo", "TEXT"),
+               ("cargo_superior", "TEXT"),
+               ("unidad_administrativa", "TEXT"),
+               ("clave_puesto", "TEXT"),
+               ("nombre_puesto", "TEXT"),
+               ("vacancia", "TEXT"),
+               ("telefono_directo", "TEXT"),
+               ("conmutador", "TEXT"),
+               ("extension", "TEXT"),
+               ("fax", "TEXT"),
+               ("email", "TEXT")],
+          "INDEX":
+          ['institucion']
+     },
+
+     "claves_salariales":
+     {    "SCHEMA":
+               [("institucion","TEXT"),
+               ("clave_puesto","TEXT"),
+               ("nombre_puesto","TEXT"),
+               ("tipo_de_personal","TEXT"),
+               ("otra_categoria","TEXT"),
+               ("sueldo_base","FLOAT"),
+               ("compensacion","FLOAT"),
+               ("total_percepcion_brutas","FLOAT"),
+               ("total_percepcion_netas","FLOAT"),
+               ("tipo_moneda","TEXT")],
+          "INDEX":
+          ['institucion']
+     },
+     "declaranet":
+     {    "SCHEMA":
+               [("nombre","TEXT"),
+               ("sector","TEXT"),
+               ("poder","TEXT"),
+               ("ambito","TEXT"),
+               ("institucion_o_empresa","TEXT"),
+               ("unidad_administrativa","TEXT"),
+               ("puesto","TEXT"),
+               ("funcion_principal","TEXT"),
+               ("ingreso_egreso","TEXT"),
+               ("year_start","INT"),
+               ("year_end","INT")],
+          "INDEX":
+          ['institucion_o_empresa']
+     },
+     "compranet":
+     {    "SCHEMA":
+               [("gobierno","TEXT"),
+               ("siglas","TEXT"),
+               ("dependencia","TEXT"),
+               ("claveuc","TEXT"),
+               ("nombre_de_la_uc","TEXT"),
+               ("responsable","TEXT"),
+               ("codigo_expediente","INT"),
+               ("titulo_expediente","TEXT"),
+               ("plantilla_expediente","TEXT"),
+               ("numero_procedimiento","TEXT"),
+               ("exp_f_fallo","TEXT"),
+               ("proc_f_publicacion", "TEXT"),
+               ("fecha_apertura_proposiciones","TEXT"),
+               ("caracter","TEXT"),
+               ("tipo_contratacion","TEXT"),
+               ("tipo_procedimiento","TEXT"),
+               ("forma_procedimiento","TEXT"),
+               ("codigo_contrato","INT"),
+               ("titulo_contrato","TEXT"),
+               ("fecha_inicio", "DATE"),
+               ("fecha_fin", "DATE"),
+               ("importe_contrato", "FLOAT"),
+               ("moneda","TEXT"),
+               ("estatus_contrato","TEXT"),
+               ("archivado","TEXT"),
+               ("convenio_modificatorio","FLOAT"),
+               ("ramo","FLOAT"),
+               ("clave_programa","TEXT"),
+               ("aportacion_federal","FLOAT") ,
+               ("fecha_celebracion","TEXT"),
+               ("contrato_marco","FLOAT"),
+               ("identificador_cm","TEXT"),
+               ("compra_consolidada","FLOAT"),
+               ("plurianual","FLOAT"),
+               ("clave_cartera_shcp","TEXT"),
+               ("estratificacion_muc","TEXT"),
+               ("folio_rupc","FLOAT"),
+               ("proveedor_contratista","TEXT"),
+               ("estratificacion_mpc","TEXT"),
+               ("siglas_pais","TEXT"),
+               ("estatus_empresa","TEXT"),
+               ("cuenta_administrada_por","TEXT"),
+               ("c_externo","FLOAT"),
+               ("organismo","TEXT"),
+               ("anuncio","TEXT"),
+               ("año_inicio","INT")],
+          "INDEX":
+          ['codigo_expediente']
+     }
+
+}

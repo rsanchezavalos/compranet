@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*_temp
 
 # C extensions
 *.so
@@ -9,6 +10,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+_temp
 build/
 develop-eggs/
 dist/
@@ -141,4 +143,3 @@ site/
 
 # Basura de Emacs
 **/.#*
-.Rproj.user

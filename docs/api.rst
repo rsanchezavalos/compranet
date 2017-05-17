@@ -4,10 +4,10 @@ Pipelines API reference
 .. automodule:: tasks
    :members:
 
-Pipeline Dummy
+Pipeline compranet
 ------------------
 
-.. automodule:: tasks.dummy
+.. automodule:: tasks.compranet
    :members:
    :undoc-members:
    :inherited.members:

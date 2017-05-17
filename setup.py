@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from setuptools import setup, find_packages
 
 from os import path
@@ -8,18 +11,15 @@ compranet-pipeline: Pipeline compranet
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.org'), encoding='utf-8') as f:
+with open(path.join(here, 'README.org'), encoding='utf-8') as f:    
     long_description = f.read()
-
 
 setup(
     name="compranet",
     version='0.0.1',
     description='Pipeline compranet',
     long_description=long_description,
-    url='https://github.com/nanounanue/pipeline-template',
-    author='Adolfo De Unánue',
-    author_email='nanounanue@gmail.com',
+    author_email='r.sanchezavalos@gmail.com',
     license='GPL v3',
 
     packages=find_packages(),
@@ -52,3 +52,4 @@ setup(
 
     zip_safe=False
 )
+

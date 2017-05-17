@@ -1,32 +1,32 @@
-# Compranet - Ciencia de Datos para evitar la corrupción.
-
-## ToDo's
-
-- SQLite 2 RDS 
-- Terminar Spider Declaranet
-- Metadatos de Compranet
-- Metadatos de Funcionarios
-- Pipeline de actualización de Base de datos
-- ToDO(Luigi)
+# Compranet - Data science against corruption in Mexico
 
 ## About:
-Compranet es un sistema electrónico (Desarrollado por la Secretaría de la Función Pública) que asiste el proceso de contratación de servicios, bienes, arrendamientos y obra pública de las dependencias y entidades de la administración pública.
+Procurement biddings are one of the biggest potential opportunities for government agents to divert funds intended for public projects. They constitute the clearest pathway to transfer resources between the public and the private sector, and are subject to a significant degree of simulation, powered by key agents involved in the process. This is implies substantial losses in social welfare: government agencies paying overpriced or low-quality products, and more valuable projects not receiving enough funding.
+
+Despite the fact that information from all procurement contracts is public by law, the data available through the platform does not fully permit interoperability with other public sources of information, which is essential to analyse complex phenomena such as corruption. Moreover, one of the most important tools for this task would be to understand -at least to a certain extent- the social networks that reduce the costs of collusion.
+
+There have been very few and isolated efforts to reconstruct these networks in the Mexican context. Namely, [garrido2017] is an interesting result that exploits self-constructed data of educational relationships between government officials. However, no significant effort has been made in terms of reproducibility. 
+
+What we have intended to do for this project can be summarized in three consecutive objectives. Initially, to identify and combine the most important sources of information regarding public procurements and transparency. Then, to construct a historical work relations graph for government officials. Lastly, to implement anomaly detection models in order to assess risk and filter out cases.
+
 **
 
 
-### Technical Plan
+## Installation
 
+The analysis pipeline can be run after cloning this repository and
+calling `make init` and `make deploy`. 
 
-### Data Pipeline
+### Configuration files
 
-* Download Data
-	- /Ingest/Initial_Ingestion Descarga Compranet y el directorio de funcionarios
-	- /Ingest/declaranet - scrapy/selenium crawler para obtener cvs y declaración **[Desarrollo]**
-* Raw Table Creation **[Desarrollo]**
-	- Datos se suben a un RDS
-* Create semantic tables **[Desarrollo]**
-* Create semantic tables **[Desarrollo]**
-* Create Graph DB **[Desarrollo]**
+### Dependencies
+
+* Python 3.5.2
+* luigi
+* git
+* psql (PostgreSQL) 9.5.4
+* PostGIS 2.1.4
+* ...and other Python packages (see `requirements.txt`)
 
 ### Configuration Files
 

@@ -1,4 +1,12 @@
 luigi
 Click
 python-dotenv
+boto3
+joblib 
+pandas
+sqlalchemy
+boto
+boto3
+psycopg2
+s3fs
 
