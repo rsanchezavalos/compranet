@@ -14,8 +14,16 @@ What we have intended to do for this project can be summarized in three consecut
 
 ## Installation
 
-The analysis pipeline can be run after cloning this repository and
-calling `make init` and `make deploy`. 
+The analysis pipeline can be run after cloning this repository in one of the nodes of the swarm.
+Create a Docker registry at port 5000 like:
+
+```
+docker service create --name registry --publish 5000:5000 registry:2
+```
+
+`make init` 
+`make setup`
+`make deploy`
 
 ### Configuration files
 
