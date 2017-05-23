@@ -21,9 +21,15 @@ Create a Docker registry at port 5000 like:
 docker service create --name registry --publish 5000:5000 registry:2
 ```
 
-`make init` 
-`make setup`
-`make deploy`
+Install dependencies, create Docker images and run pipeline
+
+
+```
+make init 
+make create
+make setup # builds the images of the pipeline and installs de module compranet
+make run
+```
 
 ### Configuration files
 
@@ -37,8 +43,6 @@ docker service create --name registry --publish 5000:5000 registry:2
 * ...and other Python packages (see `requirements.txt`)
 
 ### Configuration Files
-
-### Dependencies
 
 ### Wishful
 

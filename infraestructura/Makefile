@@ -5,11 +5,14 @@
 ########################################
 SHELL := /bin/bash 
 PROJECT_NAME:=compranet
-DATA_DIRECTORY:=$(CURDIR)/../data
-DOCKER_REGISTRY:= "localhost:5000"
-IMAGES = python luigi-server luigi-worker python-selenium
+DATA_DIRECTORY :=$(CURDIR)/../data
+DOCKER_REGISTRY = localhost:5000
+IMAGES = python luigi-worker luigi-server python-selenium
 #base python r java luigi-server luigi-worker spark-client hadoop-client
-IMAGE_VERSION:=0.1
+IMAGE_VERSION = 0.1
+
+
+
 
 ########################################
 ##             Control                ##
@@ -28,16 +31,16 @@ up: .running
 	@docker-compose --project-name ${PROJECT_NAME} up -d
 	@touch .running
 
+create: .images_built #.data_built .network_built .infrastructure_built
 
-create: .network_built .images_built .data_built #.network_built .images_built
+.service_create:# Create Service if you are in swarm mode -> Node1
+	@docker service create --name registry --publish 5000:5000 registry:2
 
 .images_built:
-	@for image in $(IMAGES) ; do \
-	    sudo docker build --tag $$DOCKER_REGISTRY/dpa/$$image:${IMAGE_VERSION} --tag dpa/$$image:latest --tag dpa/$$image:$(IMAGE_VERSION) $$image ; \
-	    sudo docker push $$DOCKER_REGISTRY/dpa/$$image:$(IMAGE_VERSION); \
-	 done
+	@for image in $(IMAGES); do \
+	    sudo docker build --tag ${DOCKER_REGISTRY}/dpa/$$image:${IMAGE_VERSION} --tag dpa/$$image:latest --tag dpa/$$image:$(IMAGE_VERSION) $$image;done;
+	    #sudo docker push ${DOCKER_REGISTRY}/dpa/$$image:$(IMAGE_VERSION); 
 	@touch .images_built
-
 
 .data_built:
 	echo ${DATA_DIRECTORY}

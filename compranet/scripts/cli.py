@@ -5,8 +5,9 @@ import socket
 
 import sys
 import luigi
-
 import compranet.pipelines.compranet
+
+
 
 def check_server(host, port):
     """
@@ -37,7 +38,7 @@ def main(server, port, luigi_cfg):
 
                   '--scheduler-host', str(server),
                   '--scheduler-port', str(port),
-                    'RunDeclaranet' #'compranetPipeline',
+                    'RunRunPipelines' #'compranetPipeline',
                   # '--level', str(level), 
                   # '--sleep', str(sleep),
                     '--workers', str(workers),                  

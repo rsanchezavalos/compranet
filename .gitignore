@@ -132,7 +132,7 @@ site/
 *.pdf
 *.ppt*
 *.sqlite
-
+*.zip
 # De la construcción de imágenes y contenedores
 **/.built*
 **/*_built*

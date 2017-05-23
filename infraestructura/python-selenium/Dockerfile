@@ -1,8 +1,12 @@
 FROM ubuntu:16.04
+
 MAINTAINER Roberto Sanchez <r.sanchezavalos@gmail.com>
 
+ENV REFRESHED_AT 2017-05-21
 
-ENV REFRESHED_AT 2017-04-09
+# Python Version (Apologies beforehand)
+ENV version=2.7.12 
+
 ENV CHROMEDRIVER_URL=http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
 
 RUN apt-get update && \ 
@@ -10,7 +14,8 @@ RUN apt-get update && \
 
 RUN apt-get -y install python-pip
 
-RUN apt-get -y install chromium-chromedriver
+RUN apt-get --yes update
+RUN apt-get --yes install chromium-chromedriver
 
 RUN apt-get update; \
   apt-get --yes  install build-essential checkinstall && \
@@ -23,7 +28,6 @@ RUN apt-get --yes install libxss1 libappindicator1 libindicator7 libpango1.0-0 f
 #==================
 # Python 2.7.12
 #==================
-ENV version=2.7.12 
 
 #RUN  mkdir ~/Downloads/ && \
 #  cd ~/Downloads/  
@@ -36,7 +40,6 @@ RUN wget https://www.python.org/ftp/python/$version/Python-$version.tgz && \
   make altinstall && \
   alias python=python2.7 
 
-
 RUN apt-get update && apt-get install -y \
   python \
   python-dev\
@@ -44,6 +47,9 @@ RUN apt-get update && apt-get install -y \
   ipython \
   unzip 
 
+#==================
+# Google ChromeDriver
+#==================
 
 RUN apt-get --yes install libxss1 libappindicator1 libindicator7 && \
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&\
@@ -63,18 +69,8 @@ RUN  mv -f chromedriver /usr/local/share/chromedriver &&\
   ln -s /usr/local/share/chromedriver /usr/bin/chromedriver &&\
   apt-get --yes install python-pip
 
-
-#RUN apt-get update &&\
-#  apt-get -y install xorg default-jre rungetty gtk2-engines-pixbuf 
-
-
-
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 
-CMD [ "/bin/bash" ]
-
-
-
-
+CMD [ "/bin/bash" ] 

@@ -1,8 +1,8 @@
 ########################################
 # Makefile for pipeline
 # Version 0.1
-# Adolfo De Unánue
-# 11 de marzo de 2017
+# rsanchezavalos
+## NOTE: Tomado de https://github.com/nanounanue/pipeline-template - Version 0.1 - Adolfo De Unánue
 ########################################
 
 .PHONY: clean data lint init deps sync_to_s3 sync_from_s3
@@ -36,12 +36,12 @@ help:   ##@ayuda Diálogo de ayuda
 
 init: prepare ##@dependencias Prepara la computadora para el funcionamiento del proyecto
 
-prepare: deps 
+prepare: deps pyenv
 #	pyenv virtualenv ${PROJECT_NAME}_venv
 #	pyenv local ${PROJECT_NAME}_venv
 
-#pyenv: .python-version
-#	@pyenv install $(VERSION_PYTHON)
+pyenv: .python-version
+	@pyenv install $(VERSION_PYTHON)
 
 deps: pip pip-dev
 
@@ -148,7 +148,7 @@ run:       ##@proyecto Ejecuta el pipeline de datos
 setup: build install ##@proyecto Crea las imágenes del pipeline e instala el pipeline como paquete en el PYTHONPATH
 
 remove: uninstall  ##@proyecto Destruye la imágenes del pipeline y desinstala el pipeline del PYTHONPATH
-	$(MAKE) --directory=$(PROJECT_NAME) clean
+	#$(MAKE) --directory=$(PROJECT_NAME) clean
 
 
 set_project_name: ##@proyecto Renombra el proyecto de dpa_test a PROJECT_NAME (requiere ag 'silver searcher')

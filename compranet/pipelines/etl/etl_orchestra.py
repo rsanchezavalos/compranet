@@ -19,8 +19,9 @@ from luigi import configuration
 from luigi.s3 import S3Target, S3Client
 from dotenv import load_dotenv,find_dotenv
 from luigi.contrib.postgres import PostgresTarget, PostgresQuery
-from utils.pg_compranet import parse_cfg_list, download_dir
-from utils.declaranet_tools import fill_with_near
+from compranet.pipelines.utils.pg_compranet import parse_cfg_list, download_dir
+from compranet.pipelines.utils.declaranet_tools import fill_with_near
+
 # Variables de ambiente
 load_dotenv(find_dotenv())
 
@@ -69,9 +70,6 @@ class MergeDBs(luigi.postgres.PostgresQuery):
 		return luigi.postgres.PostgresTarget(host=self.host,database=self.database,user=self.user,
 			password=self.password,table=self.table,update_id=self.update_id)
 
-
-
-
 class CleanDB(luigi.postgres.PostgresQuery):
 	year_month = luigi.Parameter()
 
@@ -100,10 +98,6 @@ class CleanDB(luigi.postgres.PostgresQuery):
 		
 		return luigi.postgres.PostgresTarget(host=self.host,database=self.database,user=self.user,
 			password=self.password,table=self.table,update_id=self.update_id)
-
-
-
-
 
 class PredictiveModel(luigi.Task):
 

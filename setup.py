@@ -11,7 +11,7 @@ compranet-pipeline: Pipeline compranet
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.org'), encoding='utf-8') as f:    
+with open(path.join(here, 'README.Rmd')) as f:    
     long_description = f.read()
 
 setup(
@@ -39,14 +39,9 @@ setup(
         'python-dotenv'
     ],
 
-    extra_require={
-        'test': ['mock']
-    },
-
     entry_points = {
         'console_scripts' : [
             'compranet = compranet.scripts.cli:main',
-
         ]
     },
 

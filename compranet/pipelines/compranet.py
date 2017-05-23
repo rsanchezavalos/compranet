@@ -14,10 +14,9 @@ from luigi.s3 import S3Target, S3Client
 from luigi import configuration
 from joblib import Parallel, delayed
 import multiprocessing
-from ingest.ingest_orchestra import UpdateDB
-from etl.etl_orchestra import MissingClassifier, SetNeo4J, PredictiveModel, ETL
-
-from utils.pg_compranet import parse_cfg_list
+from compranet.pipelines.ingest.ingest_orchestra import UpdateDB
+from compranet.pipelines.etl.etl_orchestra import MissingClassifier, SetNeo4J, PredictiveModel, ETL
+from compranet.pipelines.utils.pg_compranet import parse_cfg_list
  
 ## Variables de ambiente
 load_dotenv(find_dotenv())
@@ -47,7 +46,10 @@ class IngestPipeline(luigi.WrapperTask):
 
     """
         Este wrapper ejecuta la ingesta de cada pipeline-task
-        Input - lista con los pipeline-tasks especificados a correr.
+
+    Input Args (From luigi.cfg):
+        pipelines: lista con los pipeline-tasks especificados a correr.
+
     """
 
     year_month = luigi.Parameter()
@@ -59,7 +61,6 @@ class IngestPipeline(luigi.WrapperTask):
 
         for pipeline_task in self.pipelines:
 
-            print(pipeline_task)
             yield UpdateDB(pipeline_task=pipeline_task, year_month=self.year_month)
 
 class EtlPipeline(luigi.WrapperTask):
