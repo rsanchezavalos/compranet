@@ -2,23 +2,22 @@
 
 # Tabla de compranet
 create table clean.compranet as
-select regexp_replace(cast(nombre_uc as text), 'DIRECCION', 'DIRECCIÓN') from
-(select regexp_matches(upper("NOMBRE_DE_LA_UC"), '-(.*)\ #.*')
+select regexp_matches(upper(nombre_de_la_uc), '.*-(.*)\ #.*')
 as nombre_uc, 
-"CLAVE_UC" as clave_uc,
-"DEPENDENCIA" as dependencia,
-"RESPONSABLE" as responsable,
-"NUMERO_PROCEDIMIENTO" as numero_procedimiento,
-"TIPO_CONTRATACION" as tipo_contratacion,
-"TIPO_PROCEDIMIENTO" as tipo_procedimiento,
-"FECHA_INICIO" as fecha_inicio,
-"FECHA_FIN"	as fecha_fin,
-"IMPORTE_CONTRATO" as importe_contrato,
-"CLAVE_CARTERA_SHCP" as clave_cartera_shcp,
-"ESTRATIFICACION_MUC" as estratificacion_muc,
-"PROVEEDOR_CONTRATISTA" as proveedor_contratista,
-"FOLIO_RUPC" as folio_rupc
-from raw.compranet) as subq;
+claveuc as clave_uc,
+dependencia as dependencia,
+responsable as responsable,
+numero_procedimiento as numero_procedimiento,
+tipo_contratacion as tipo_contratacion,
+tipo_procedimiento as tipo_procedimiento,
+fecha_inicio as fecha_inicio,
+fecha_fin as fecha_fin,
+importe_contrato as importe_contrato,
+clave_cartera_shcp as clave_cartera_shcp,
+estratificacion_mpc as estratificacion_mpc,
+proveedor_contratista as proveedor_contratista,
+folio_rupc as folio_rupc
+from raw.compranet
 
 #Tabla de funcionarios
 create table clean.funcionarios as
