@@ -16,7 +16,7 @@ with open(path.join(here, 'README.Rmd')) as f:
 
 setup(
     name="compranet",
-    version='0.0.1',
+    version='0.0.2',
     description='Pipeline compranet',
     long_description=long_description,
     author_email='r.sanchezavalos@gmail.com',

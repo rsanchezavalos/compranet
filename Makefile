@@ -68,9 +68,9 @@ clean: ##@limpieza Elimina los archivos no necesarios
 	@find . -name '*.pyo' -exec rm -f {} \;
 	@find . -name '*~' ! -name '*.un~' -exec rm -f {} \;
 
-clean_venv: ##@limpieza Destruye la carpeta de virtualenv
-	@pyenv uninstall -f ${PROJECT_NAME}_venv
-	echo ${VERSION_PYTHON} > .python-version
+#clean_venv: ##@limpieza Destruye la carpeta de virtualenv
+#	@pyenv uninstall -f ${PROJECT_NAME}_venv
+#	echo ${VERSION_PYTHON} > .python-version
 
 ########################################
 ##      Tareas de Ejecución           ##
@@ -115,14 +115,14 @@ tox: clean  ##@test Ejecuta tox
 ##      Tareas de Documentación       ##
 ########################################
 
-view_docs:  ##@docs Ver la documentación en http://0.0.0.0:8000
-	@mkdocs serve
+#view_docs:  ##@docs Ver la documentación en http://0.0.0.0:8000
+	#@mkdocs serve
 
-create_docs: ##@docs Crea la documentación
-	$(MAKE) --directory=docs html
+#create_docs: ##@docs Crea la documentación
+#	$(MAKE) --directory=docs html
 
-todo:         ##@docs ¿Qué falta por hacer?
-	pylint --disable=all --enable=W0511 src
+#todo:         ##@docs ¿Qué falta por hacer?
+#	pylint --disable=all --enable=W0511 src
 
 
 ########################################
@@ -131,12 +131,12 @@ todo:         ##@docs ¿Qué falta por hacer?
 ########################################
 
 
-sync_to_s3: ##@data Sincroniza los datos hacia AWS S3
-	@aws s3 sync data/ s3://$(S3_BUCKET)/data/
+#sync_to_s3: ##@data Sincroniza los datos hacia AWS S3
+#	@aws s3 sync data/ s3://$(S3_BUCKET)/data/
 
 
-sync_from_s3: ##@data Sincroniza los datos desde AWS S3
-	@aws s3 sync s3://$(S3_BUCKET)/data/ data/
+#sync_from_s3: ##@data Sincroniza los datos desde AWS S3
+#	@aws s3 sync s3://$(S3_BUCKET)/data/ data/
 
 ########################################
 ##      Tareas del Proyecto           ##
