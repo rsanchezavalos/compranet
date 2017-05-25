@@ -15,9 +15,10 @@ from luigi import configuration
 from joblib import Parallel, delayed
 import multiprocessing
 from compranet.pipelines.ingest.ingest_orchestra import UpdateDB
-from compranet.pipelines.etl.etl_orchestra import MissingClassifier, SetNeo4J, PredictiveModel, ETL
 from compranet.pipelines.utils.pg_compranet import parse_cfg_list
- 
+from compranet.pipelines.model.model_orchestra import Model
+
+
 ## Variables de ambiente
 load_dotenv(find_dotenv())
  
@@ -40,6 +41,7 @@ class RunPipelines(luigi.WrapperTask):
 
         yield IngestPipeline(self.year_month)
         yield EtlPipeline(self.year_month)
+        yield ModelPipeline(self.year_month)
 
 
 class IngestPipeline(luigi.WrapperTask):
@@ -83,7 +85,7 @@ class EtlPipeline(luigi.WrapperTask):
 class ModelPipeline(luigi.WrapperTask):
 
     """
-        Este wrapper ejecuta los modelos
+        Este wrapper ejecuta el código de Modelos
     """
 
     year_month = luigi.Parameter()
@@ -91,9 +93,13 @@ class ModelPipeline(luigi.WrapperTask):
 
     def requires(self):
 
-        yield MissingClassifier(year_month=self.year_month)
-        yield SetNeo4J(year_month=self.year_month)
-        yield PredictiveModel(year_month=self.year_month)
+        yield ETL(year_month=self.year_month)
+
+    def run(self):
+
+        yield Model(year_month=self.year_month)
+
+
 
 
 

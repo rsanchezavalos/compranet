@@ -13,16 +13,7 @@ What we have intended to do for this project can be summarized in three consecut
 
 
 ## Installation
-
-The analysis pipeline can be run after cloning this repository in one of the nodes of the swarm.
-Create a Docker registry at port 5000 like:
-
-```
-docker service create --name registry --publish 5000:5000 registry:2
-```
-
-Install dependencies, create Docker images and run pipeline
-
+To run the pipeline clone this repository in your master node in swarm mode and run: 
 
 ```
 make init 
@@ -31,20 +22,15 @@ make setup # builds the images of the pipeline and installs de module compranet
 make run
 ```
 
-### Configuration files
-
 ### Dependencies
 
 * Python 3.5.2
 * luigi
 * git
-* psql (PostgreSQL) 9.5.4
+* psql (PostgreSQL RDS)
 * PostGIS 2.1.4
-* ...and other Python packages (see `requirements.txt`)
+* ...and more (see `requirements.txt`)
 
-### Configuration Files
-
-### Wishful
 
 ### Contributors
 

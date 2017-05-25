@@ -1,0 +1,67 @@
+MATCH (p:unidad)-[:durante]-> (:fecha)-[:pertenecio]-> (n:Funcionario) RETURN p LIMIT 25
+ 
+PGOPTIONS="--search_path=clean" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c "Copy (SELECT * FROM clean.funcionarios) to STDOUT With CSV HEADER DELIMITER ',';" > funcionarios.csv
+
+PGOPTIONS="--search_path=clean" psql -t --db postgresql://compranet:compranetitam@compranetdb.cwioodotgi4s.us-west-2.rds.amazonaws.com/compranetdb -c "Copy (SELECT * FROM raw.compranet limit 100) to STDOUT With CSV HEADER DELIMITER ',';" > compranet.csv
+
+sudo mv base_final.csv $HOME/neo4j/import/compranet.csv
+sudo mv funcionarios.csv $HOME/neo4j/import/funcionarios.csv
+
+cd $HOME/neo4j/import
+
+
+CREATE INDEX ON :Compra(codigo);
+CREATE CONSTRAINT ON (dependencia:Dependencia) ASSERT dependencia.nombre IS UNIQUE;
+CREATE CONSTRAINT ON (unidad:Unidad) ASSERT unidad.clave IS UNIQUE;
+
+CREATE CONSTRAINT ON (funcionario:Funcionario) ASSERT funcionario.clave IS UNIQUE;
+
+
+
+
+LOAD CSV WITH HEADERS FROM  "file:///funcionarios.csv" AS line
+MERGE  (funcionario:Funcionario {nombre:toString(line.nombre),cargo:toString(line.cargo),id:line.index,unidad:line.clave_uc}) 
+MERGE  (unidad:Unidad {clave:toString(line.clave_uc)}) 
+MERGE  (fecha:Fecha {anio:line.anio,clave:line.clave_uc})
+MERGE (unidad)-[:en_fecha] -> (fecha)
+MERGE (fecha)-[:pertenecio]-> (funcionario)
+
+USING PERIODIC COMMIT 1000
+	LOAD CSV WITH HEADERS FROM  "file:///compranet_t.csv" AS line
+	MERGE  (dependencia:Dependencia {nombre:line.DEPENDENCIA}) 
+	MERGE  (unidad:Unidad {clave:toString(line.CLAVEUC)}) 
+	MERGE  (fecha:Fecha {anio:line.año_inicio,clave:line.CLAVEUC}) 
+	MERGE  (compra:Compra {importe:line.IMPORTE_CONTRATO,estatus:line.ESTATUS_CONTRATO,codigo:line.CODIGO_CONTRATO,plurianual:line.PLURIANUAL,responsable:line.RESPONSABLE}) 
+	MERGE  (proveedor:Proveedor {nombre:line.PROVEEDOR_CONTRATISTA, estratificacion:line.ESTRATIFICACION_MPC,pais:line.SIGLAS_PAIS } ) 
+
+	MERGE (compra)-[:del_proveedor] -> (proveedor)
+	MERGE (dependencia)-[:que_contiene]->(unidad)
+	MERGE (unidad)-[:en_fecha]->(fecha)
+	MERGE (fecha)-[:adquirio]-> (compra)
+
+
+MATCH (n) DETACH
+DELETE n
+
+
+CREATE INDEX ON :Estado(cve_ent);
+CREATE CONSTRAINT ON (estado:Estado) ASSERT estado.cve_ent IS UNIQUE;
+CREATE CONSTRAINT ON (municipio:Municipio) ASSERT municipio.cve_muni IS UNIQUE;
+CREATE CONSTRAINT ON (beneficiario:Beneficiario) ASSERT beneficiario.new_id IS UNIQUE;
+
+USING PERIODIC COMMIT 1000
+	LOAD CSV WITH HEADERS FROM  "file:///temp.csv" AS line
+
+	MERGE  (estado:Estado {cve_ent:line.CVE_ENT}) 
+	MERGE  (municipio:Municipio {cve_muni:line.cve_muni}) 
+	MERGE  (beneficiario:Beneficiario {nombre:line.nombre,new_id:line.NEW_ID})
+	MERGE  (programa:Programa {cve_programa:line.PROG,new_id:line.NEW_ID})
+	MERGE  (fecha:Fecha {fecha:2017,new_id:line.NEW_ID})
+	MERGE  (beneficio:beneficio {monetario:line.NU_IMP_MONETARIO,new_id:line.NEW_ID})
+
+	MERGE (municipio)<-[:del_municipio]-(estado)
+	MERGE (beneficiario)<-[:donde_vive]- (municipio)
+	MERGE (programa)<-[:que_recibio]- (beneficiario)
+	MERGE (programa)-[:en_el_año]-> (fecha)
+	MERGE (fecha)-[:con_importe]-> (beneficio)
+

@@ -24,6 +24,3 @@ UPDATE clean.funcionarios AS funcionarios
 		AND diccionarios.uc_funcionarios = funcionarios.unidad_administrativa
 
 
-
-
--- Declaranet

@@ -99,29 +99,13 @@ class CleanDB(luigi.postgres.PostgresQuery):
 		return luigi.postgres.PostgresTarget(host=self.host,database=self.database,user=self.user,
 			password=self.password,table=self.table,update_id=self.update_id)
 
-class PredictiveModel(luigi.Task):
-
-	year_month = luigi.Parameter()
-
-
-	def run(self):
-
-		return Magicloop(self.year_month)
-
-class MagicLoop(luigi.Task):
-
-	year_month = luigi.Parameter()
-
-	def requires(self):
-
-		return CleanDB(self.pipeline_task, self.year_month)
-
-	def run(self):
-
-		yield print("Running Magicloop")
-
 
 class SetNeo4J(luigi.Task):
+
+	"""
+        Este Task descarga la base de datos limpia y completa para la ingesta 
+        final a neo4j
+	"""
 
 	year_month = luigi.Parameter()
 
@@ -140,7 +124,7 @@ class SetNeo4J(luigi.Task):
 		    password = os.environ.get("POSTGRES_PASSWORD_COMPRANET"))
 
 		cur = conn.cursor()
-		query = """SELECT * FROM raw.compranet LIMIT 10000"""
+		query = """SELECT * FROM clean.compranet"""
 		outputquery = 'copy ({0}) to stdout with csv header'.format(query)
 
 		with open('../../data/neo4j/compranet.csv', 'w') as f:
@@ -148,26 +132,10 @@ class SetNeo4J(luigi.Task):
 
 		conn.close()
 
-		return CentralityClassifier(pipeline_task="compranet",year_month=self.year_month)
+		return CentralityClassifiers(pipeline_task="compranet",year_month=self.year_month)
 
 
-
-
-class MissingClassifier(luigi.Task):
-
-	year_month = luigi.Parameter()
-
-	def requires(self):
-
-		return CleanDB(self.pipeline_task, self.year_month)
-
-
-	def run(self):
-
-		yield print("Running MissingClassifier")
-
-
-class CentralityClassifier(luigi.Task):
+class CentralityClassifiers(luigi.Task):
 
 	year_month = luigi.Parameter()
 

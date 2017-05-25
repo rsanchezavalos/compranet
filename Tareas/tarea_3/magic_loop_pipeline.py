@@ -14,8 +14,10 @@ logger = logging.getLogger("magic_loop.log")
 
  
 class RunModel(luigi.WrapperTask):
+
 	def requireres(self):
 		pass
+
 	def run(self):
 		pass
 
