@@ -1,0 +1,13 @@
+# Data Sources
+
+We are using three main information sources for our analysis, briefly described bellow.
+
+## Compranet
+
+Compranet hosts information on all public procurements, and compiles it into a single data base which is published in Compranet's web site. On this database one can consult information regarding the agency, RU, procurement's title and number, provider's name, provider's id number in the RUPC (short for Registro Único de Proveedores y Contratistas, where one can consult additional information regarding the provider), tyoe of provider (according to the size of the company), publication date, starting date, ending date, ammount established in the contract, ammount provided by specific federal programs and/or international organizations, and a link where one can consult all relevant documents regarding the procurement different stages.
+
+Although this percompiled database has a lot of useful information for the analysis of corruption in government procurements, it has a lot of problems derived, mainly, from missing observations in the data. Missing observations are found in almost every variable. An additional problem found when analysin this database is that some of the reported values do not match the description of the variable (for instance, "---" was found instead of the provider's name in one procurement, or two digit numbers were found instead of the provider's id number in the RUPC, which should be a six digit number). So, in order to analyze reliable information regarding government procurements, we cross-referenced most of the variables with other available data (such as the RUPC database, and information on public spending published by the Secretaria de Hacienda y Credito Publico) to verify the accuracy of provided information.
+
+## Declaranet
+
+## SAT/SHCP
