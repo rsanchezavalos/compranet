@@ -6,20 +6,6 @@ library(DT)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
-#  compranet <- reactive({
-    # Abrir base de datos compranet
-    
-#  })
-  
-#  neo <- reactive({
-    # Conectar con neo4j
-#  })
-  
-#  indices <- reactive({
-    # Abrir resultados de los indices
-#  })
-
-  # Tabla resumen por dependencia
     
   output$tabla_dependencia <- DT::renderDataTable({
     
