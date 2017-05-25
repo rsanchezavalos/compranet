@@ -1,12 +1,12 @@
-luigi
-Click
-python-dotenv
-boto3
-joblib 
-pandas
-sqlalchemy
-boto
-boto3
-psycopg2
-s3fs
+luigi==2.6.1
+click==6.7
+python-dotenv==0.6.4
+joblib==0.11
+pandas==0.19.2
+SQLAlchemy==1.1.5
+boto==2.46.1
+boto3==1.4.4
+psycopg2==2.6.2
+s3fs==0.1.0
+cycli
 

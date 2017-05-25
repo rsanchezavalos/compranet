@@ -19,18 +19,17 @@ from os.path import join, dirname
 from luigi import configuration
 from luigi.s3 import S3Target, S3Client
 from dotenv import load_dotenv,find_dotenv
-#from luigi.contrib.postgres import PostgresTarget
-from utils.declaranet_tools import fill_with_near
-from utils.pg_compranet import parse_cfg_list, download_dir
+from compranet.pipelines.utils.declaranet_tools import fill_with_near
+from compranet.pipelines.utils.pg_compranet import parse_cfg_list, download_dir
 import luigi.task
 
 # Variables de ambiente
 load_dotenv(find_dotenv())
 
 # Load Postgres Schemas
-temp = open('./common/pg_raw_schemas.txt').read()
+temp = open('compranet/pipelines/common/pg_raw_schemas.txt').read()
 schemas = ast.literal_eval(temp)
-open('./common/pg_raw_schemas.txt').close()
+open('compranet/pipelines/common/pg_raw_schemas.txt').close()
 
 
 # AWS
@@ -77,7 +76,7 @@ class UpdateDB(luigi.postgres.CopyToTable):
         return "raw." + self.pipeline_task
 
     def requires(self):
-
+        
         return UpdateOutput(pipeline_task=self.pipeline_task, year_month=self.year_month)
 
     def rows(self):
