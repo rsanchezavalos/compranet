@@ -1,0 +1,64 @@
+# Further Steps
+
+Even if the contributions to the analysis of corruption in Mexico made in the elaboration of this project are significant, there is much work to be done. Here, we enlist some of the most important aspects that will ensure a thorough analysis.
+
+## Expand Data Sources
+
+### SAT 
+
+Incorporate a database published by SAT (short for Servicio de Administración Tributaria) that enlists identified phantom businesses.
+
+### CUCOPS
+
+Incorporate CUCOPS (short for Clasificador Único de las Contrataciones Públicas) information, which orders and categorizes every government procurement according to the itmes or services being purchased. However, CUCOPS information has to be requested by procurement.
+
+### Procurement Details
+
+Some procurements provide a link in which every related document may be consulted. This includes the publication of the project, a summary of every provider's proposal, and the ruling on the provider that was awarded the contract.
+
+## Unsupervised Models
+
+### Compliance with Transparency Laws Index
+
+The Compliance with Transparency Laws Index can be improved by incorporating an additional weight that emphasizes the relative importance that every public variable has in terms of avoiding corruption in government procurements.
+
+### Graph Analysis
+
+Incorporate an analysis on pivotal nodes. An analysis on pivotal nodes between ghost firms and agencies/RUs may allow the identification of possible corrupt bureaucrats. As a node is said to be pivotal if it lies on all shortest paths between two other nodes in the network, one may be able to identify bureaucrats direclty related to one or more phantom enterprises.
+
+Broaden the centrality meassures analysis to estimate the spread of corruption within government procurements. Applying centrality meassures to phantom businesses or bureaucrats that have already been identified as corrupt may help estimate the spread, as centrality meassures show the importance that a specific node has within the graph.
+
+Some centrality meassures than can be applied are:
+
+#### Degree Centrality
+
+Degree centrality is simply the number of connections that a node has in the the network.
+
+#### Betweenness Centrality
+
+The betweenness centrality of a node in a network is the number of shortest paths between two other nodes in the network on which a given node appears. Betweenness centality is an important metric because it can be used to identify “brokers of information” in the network as well as nodes that connect disparate clusters. 
+
+#### Closeness Centrality
+
+Closeness centrality is the inverse of the average distance to all other nodes in the network. Nodes with high closeness centality are often highly connected within clusters in the graph, but not necessarily highly connected outside of the cluster.
+
+### Identification of Patterns in Provider Selection
+
+With procurements' details, specifically with the names of the providers that submitted proposals, we may identify patterns in providers selection; either systematic selection or rejection of a specific provider, or rotation of selected providers. This analysis may strengthen the conclusions drawn from supervised models.
+
+### Identification of Collusion within Providers
+
+Identification of collusion within providers is an approach that was not analyzed in this project. However, it is as damaging as corruption. Once we incorporate information on CUCOPS, we will have a breakdown of each procurement on item or service purchased. This information should be incorporated into the graph to analyze procurements in more detail. But, more important, it enables a parallelism analysis on prices paid for every item and, with enough information, correlation between prices for items or services provided by different suppliers may be inferred to identify possible cases of collusion.
+
+## Supervised Models
+
+### Classification Models
+
+A first approach to supervised models may be done by establishing a new variable in Compranet's databases that identifies a provider as a phantom business, using the information from SAT's databases.
+
+A further approach may be done by identifying corrupt procurements in Compranet's database through an analysis of hemerographic sources.
+
+### Identification of Collusion within Providers
+
+There are some proven cases of collusion within providers in government procurements. However, as they are isolated cases, they may not be enough, at this point, to run a supervised model.
+
