@@ -2,16 +2,16 @@
  
   - Encontrar el máximo de un conjunto de datos.
 
-´´´
+```
 En este caso la función map debe recibir un chunk de datos y producir un resultado intermedio, el máximo de en chunk. EL reducer recolectará los máximos aplicados por cada map y obtendrá un máximo final.
 
-´´´
+```
 
 
 
   - Encontrar el promedio y desviación estándar de unos datos.
 
-´´´
+```
 Dado que se cumple: mean(mean(a,b), mean(c,d,e)) != mean(a,b,c,d,e) no se puede promediar en el mapper entonces:
 
 * **Mapper**
@@ -26,11 +26,11 @@ Dado que se cumple: mean(mean(a,b), mean(c,d,e)) != mean(a,b,c,d,e) no se puede 
 * **Desviación estandar**
 Se almacena el promedio y la cuenta del ejercicio pasado y se regresa a una función mapper que resta el valor menos el promedio y se calcula la raíz cuadrada, el mapper puede sumar los elementos de su grupo.
 El reducer suma los values de cada mapper y divide entre la cuenta del ejercicio pasado. 
-´´´
+```
 
 
 - Encontrar el top 10 de una cantidad.
-´´´
+```
 * **Mapper**
 *Regresa el top 10 de cada mapper
 *output: key count
@@ -39,15 +39,15 @@ El reducer suma los values de cada mapper y divide entre la cuenta del ejercicio
 * encuentra el top 10 global
 * output: key count
 
-´´´
+```
 
   - Contar por grupo
 
-´´´
+```
 Dividimos la base de datos por cada maper
 se identifica los grupos diferentes existentes en cada maper
 en cada maper contamos los elementos de cada grupo
 pasamos los estadísticos intermedios al reducer
 el reducer vuelve a obtener únicos y suma los conteos individuales
 
-´´´
+```
