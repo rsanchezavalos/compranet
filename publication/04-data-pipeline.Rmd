@@ -14,18 +14,8 @@ All 5 sources are downloaded in parallel when the pipeline is triggered. Once we
 knitr::include_graphics("images/pipeline.png")
 ```
 
-Para este proyecto dockerizamos un ambiente luigi-worker que inicializa el proyecto cargando los módulos necesarios para correr, empaquetando el proyecto en un paquete de python, creando las imágenes de docker y corriendo un docker-compose para exponer los puertos.
+Once we had the initial ingest, we added a scrapping code that stores the ingest folder and modifies the raw schemes and, after applying some cleanse and homologation rules, adds new information to the databases. When the merge is completed and the history of bureaucrats is created, the data is isgested into neo4j, also initialized within docker-compose.
 
-El Pipeline compienza en política_preventiva.py que tiene tres clases principales 1)Ingest, 2)ETL y 3)Model. Toma la configuración de los pipelene_Tasks a ingestar del luigi.cfg y comienza un proceso estandarizado de ingesta. [pipeline/ingest/ingest_orchestra]
+Finally, the pipeline runs the models described in the next section.
 
-Para cada pipeline_task que es cada una de las fuentes iniciales se corre su script de scrapping que descarga de forma local, después almacena en s3 guardando metadata del momento en que se ingestó, posteriormente se pasa al preprocesamiento que limpia y une las tablas con los históricos y se almacena en una tabla de postgres para el siguiente proceso de ETL.
 
-En esta primera etapa lo único que hay que modificar para agregar una nueva fuente es un código de scrapping (ya sea en bash o python) que se almacena en la carpeta de ingesta y se modifica common/pg_raw_schemas para hacer la incerción a la base de datos.  
-
-La siguiente etapa es el pipeline de ETL que aplica reglas de limpieza y homologación para poder hacer los joins.
-
-Dado que las bases de datos de compranet, declaranet, registro de funcionarios y unidades compradoras no tienen foreign keys para hacer los joins se emplearon métodos de string fuzzy matching implementados en postgres para unir los textos más similares.
-
-Una vez que se realiza el merge entre las diferentes tablas y se logra crear el historial de los funcionarios públicos se hace la ingesta dentro de la base de datos neo4j también inicializada en el ambiente de docker-compose.
-
-La última etapa del pipeline corre las medidas de centralidad ..
