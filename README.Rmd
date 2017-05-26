@@ -16,21 +16,21 @@ What we have intended to do for this project can be summarized in three consecut
 To run the pipeline clone this repository in your master node in swarm mode and run: 
 
 ```
-make init 
-make create
-make setup # builds the images of the pipeline and installs de module compranet
-make run
+make init # Install requirements
+make create # Create networks, volumes and build images
+make setup # Install the compranet module
+make run # Run the pipeline
 ```
 
 ### Dependencies
 
+* git
 * Python 3.5.2
 * luigi
-* git
-* psql (PostgreSQL RDS)
 * PostGIS 2.1.4
+* psql (PostgreSQL RDS)
+* Headless chrome Docker - https://hub.docker.com/r/rsanchezavalos/python-headless-chromedriver/
 * ...and more (see `requirements.txt`)
-* https://hub.docker.com/r/rsanchezavalos/python-headless-chromedriver/
 
 
 ## Data Pipeline
