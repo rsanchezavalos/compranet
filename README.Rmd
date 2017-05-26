@@ -53,9 +53,6 @@ Model:
 * MissingClassifier: Create Missing Index
 * CentralityClassifier: Run centrality meassures
 
-        CentralityClassifier
-        MissingClassifier
-
 ### Contributors
 
 | [![taguerram][ph-thalia]][gh-thalia] | [![rsanchezavalos][ph-rsanchez]][gh-rsanchez] | [![monzalo14][ph-monica]][gh-monica] | [![maragones][ph-manuel-a]][gh-manuel-a] |
