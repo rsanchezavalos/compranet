@@ -1,0 +1,12 @@
+USING PERIODIC COMMIT 1000
+	LOAD CSV WITH HEADERS FROM  "file:///compranet.csv" AS line
+	MERGE  (dependencia:Dependencia {nombre:line.DEPENDENCIA}) 
+	MERGE  (unidad:Unidad {clave:toString(line.CLAVEUC)}) 
+	MERGE  (fecha:Fecha {anio:line.año_inicio,clave:line.CLAVEUC}) 
+	MERGE  (compra:Compra {importe:line.IMPORTE_CONTRATO,estatus:line.ESTATUS_CONTRATO,codigo:line.CODIGO_CONTRATO,plurianual:line.PLURIANUAL,responsable:line.RESPONSABLE}) 
+	MERGE  (proveedor:Proveedor {nombre:line.PROVEEDOR_CONTRATISTA, estratificacion:line.ESTRATIFICACION_MPC,pais:line.SIGLAS_PAIS } ) 
+
+	MERGE (compra)-[:del_proveedor] -> (proveedor)
+	MERGE (dependencia)-[:que_contiene]->(unidad)
+	MERGE (unidad)-[:en_fecha]->(fecha)
+	MERGE (fecha)-[:adquirio]-> (compra)
