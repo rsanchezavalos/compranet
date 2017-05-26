@@ -135,12 +135,3 @@ class SetNeo4J(luigi.Task):
 		return CentralityClassifiers(pipeline_task="compranet",year_month=self.year_month)
 
 
-class CentralityClassifiers(luigi.Task):
-
-	year_month = luigi.Parameter()
-
-
-	def run(self):
-
-		yield print("Running CentralityClassifier")
-

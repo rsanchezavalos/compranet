@@ -21,9 +21,7 @@ from dotenv import load_dotenv,find_dotenv
 from luigi.contrib import postgres
 
 from compranet.pipelines.pipelines.utils.pg_compranet import parse_cfg_string, download_dir
-
-
-
+from compranet.pipelines.pipelines.etl.elt_orchestra import CreateSemanticDB
 
 # Variables de ambiente
 load_dotenv(find_dotenv())
@@ -38,6 +36,10 @@ aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 class Model(luigi.Task):
 
+	"""
+	Clase intermedia que activa los scripts de modelado
+	"""
+
     year_month = luigi.Parameter()
 
     def requires(self):
@@ -47,4 +49,44 @@ class Model(luigi.Task):
     def run(self):
 
     	yield MissingClassifier(self.year_month)
-    	yield Centralitymeasures(self.year_month)
+    	yield CentralityClassifier(self.year_month)
+
+
+
+class CentralityClassifier(luigi.Task):
+
+	"""
+	Clase que corre las medidas de centralidad implementadas por
+	neo4j
+	"""
+
+	year_month = luigi.Parameter()
+    script = luigi.Parameter('DEFAULT')
+    type_script = luigi.Parameter()
+
+    def run(self):
+
+        # Todo() this can be easily dockerized
+        cmd = '''
+            cycli {}/{}.{}
+            '''.format(self.script, self.pipeline_task, self.type_script)
+
+
+class MissingClassifier(luigi.Task):
+
+	"""
+	Clase que corre el índice 
+	neo4j
+	"""
+
+	year_month = luigi.Parameter()
+    script = luigi.Parameter('DEFAULT')
+
+    def run(self):
+        
+        cmd = '''
+            python {}/missing-classifier.py
+            '''.format(self.script)
+
+        return subprocess.call(cmd, shell=True)
+
