@@ -13,7 +13,7 @@ What we have intended to do for this project can be summarized in three consecut
 
 
 ## Installation
-To run the pipeline clone this repository in your master node in swarm mode and run: 
+To run the pipeline clone this repository in your master node and run: 
 
 ```
 make init # Install requirements
@@ -54,9 +54,9 @@ The general process of the pipeline is:
 
 ### Contributors
 
-| [![taguerram][ph-thalia]][gh-thalia] | [![rsanchezavalos][ph-rsanchez]][gh-rsanchez] | [![monzalo14][ph-monica]][gh-monica] | [![maragones][ph-manuel-a]][gh-manuel-a] |
-|                 :--:                 |                     :--:                      |                     :--:             |                     :--:             |
-|        [taguerram][gh-thalia]         |         [rsanchezavalos][gh-rsanchez]           |          [monzalo14][gh-monica]      |          [maragones][gh-manuel-a]      |
+| [![taguerram][ph-thalia]][gh-thalia] | [![rsanchezavalos][ph-rsanchez]][gh-rsanchez] | [![monzalo14][ph-monica]][gh-monica] |
+|                 :--:                 |                     :--:                      |                     :--:             |
+|        [taguerram][gh-thalia]         |         [rsanchezavalos][gh-rsanchez]           |          [monzalo14][gh-monica]      |
 
 
 
@@ -66,9 +66,6 @@ The general process of the pipeline is:
 [ph-monica]: https://avatars0.githubusercontent.com/u/16139907?v=3&s=460
 [gh-monica]: https://github.com/monzalo14
 
-
-[ph-manuel-a]: https://avatars2.githubusercontent.com/u/11464076?v=3&s=460
-[gh-manuel-a]: https://github.com/maragones
 
 [ph-rsanchez]: https://avatars.githubusercontent.com/u/10931011?v=3&s=460
 [gh-rsanchez]: https://github.com/rsanchezavalos
