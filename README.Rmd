@@ -30,14 +30,13 @@ make run
 * psql (PostgreSQL RDS)
 * PostGIS 2.1.4
 * ...and more (see `requirements.txt`)
-
+* https://hub.docker.com/r/rsanchezavalos/python-headless-chromedriver/
 
 
 ## Data Pipeline
 
-Once you have set up the environment, you can start using the pipeline. There
-are two different pipelines which can be run either individually or jointly,
-pub-imputation and underreporting. The general process of both pipelines is:
+After you create the evironment set up the pipeline_tasks in luigi.cfg 
+The general process of the pipeline is:
 
 * **Ingest:**
 * LocalIngest: Ingest data from multiple sources
