@@ -1,6 +1,6 @@
 - Diseñe (en /pseudo código/, imágen, código, lo que sea más fácil) el MapReduce para lo siguiente:
  
-  - Encontrar el máximo de un conjunto de datos.
+- Encontrar el máximo de un conjunto de datos.
 
 ```
 * Mapper
@@ -14,7 +14,7 @@ Outpur key Final_max_value
 
 
 
-  - Encontrar el promedio y desviación estándar de unos datos.
+- Encontrar el promedio y desviación estándar de unos datos.
 
 ```
 

@@ -143,3 +143,4 @@ site/
 
 # Basura de Emacs
 **/.#*
+.Rproj.user
