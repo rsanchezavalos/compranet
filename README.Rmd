@@ -39,17 +39,17 @@ Once you have set up the environment, you can start using the pipeline. There
 are two different pipelines which can be run either individually or jointly,
 pub-imputation and underreporting. The general process of both pipelines is:
 
-**Ingest:**
+* **Ingest:**
 * LocalIngest: Ingest data from multiple sources
 * LocalToS3: Upload to S3 and save historical by date
 * UpdateOutput: Preprocess to Output
 * UpdateDB: Update Postgres tables and Create indexes (see commons/pg_raw_schemas)
-**ETL:**
+* **ETL:**
 * MergeDBs: ETL processes to clean
 * CleanDB: SQL processes to clean tables creation
 * SetNeo4J: Download clean tables and upload to neo4j
 * CentralityClassifier: Get features and responses
-**Model:**
+* **Model:**
 * MissingClassifier: Create Missing Index
 * CentralityClassifier: Run centrality meassures
 
