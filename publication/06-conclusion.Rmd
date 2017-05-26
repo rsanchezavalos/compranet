@@ -1,8 +1,0 @@
-# Conclusion
-
-Analyzing corruption in government procurements is a complex task. Besides a somewhat obvious reason: the government -organization that hosts a number of corrupt bureaucrats- controls the flow of public information regarding government procurements -one of the means through which bureaucrats privatize public resources for personal gain-; this means that the owner of the information has little or no incentives to publish such information and, although by law such information should be public, bureaucrats find ways to obscure public information. During the elaboration of this project we encountered with two additional levels of complexity: corruption is complex *per se*, as it involves both hidden relationships between bureaucrats and businessmen, which are not easy to identify as they are masked in the form of relationships between government agencies and businesses, and sofisticated strategies devised by bureaucrats and businessmen to hide corrupt or illicit activities.
-
-In addition, efforts to analyze and unmask corruption in Mexico have been hindered by the government and pose a personal endager. We believe that, for these reasons, such efforts are few and isolated, even when corruption in government procurements entails significant losses in social welfare.
-
-This project seeks to contribute to the analysis of corruption by building a reproducible environment that combines different sources of information, along with a guide explaining such information, constructs a historical work relations graph for government officials, and implements unsupervised models to asses risk of corruption.
-

@@ -1,9 +1,0 @@
-# Introduction {#intro}
-
-Procurement biddings are one of the biggest potential opportunities for government agents to divert funds intended for public projects. They constitute the clearest pathway to transfer resources between the public and the private sector, and are subject to a significant degree of simulation, powered by key agents involved in the process. This implies substantial losses in social welfare: government agencies paying overpriced or low-quality products, and more valuable projects not receiving enough funding.
-
-Despite the fact that information from all procurement contracts is public by law, the available data, published through Compranet's platform -a transactional website through which all government procurements are handled- does not permit full interoperability with other public sources of information, which is essential to analyze complex phenomena such as corruption. Moreover, one of the most important tools to conduct a thorough analysis on this subject would be to understand -at least to a certain extent- the social networks that reduce the costs of collusion.
-
-There have been very few and isolated efforts to reconstruct these networks in the Mexican context. Namely, [garrido2017] is an interesting result that exploits self-constructed data of educational relationships between government officials. However, no significant effort has been made in terms of reproducibility. 
-
-What we have intended to do for this project can be summarized in three consecutive objectives. Initially, to identify and combine the most important sources of information regarding public procurements and transparency. Then, to construct a historical work relations graph for government officials. Lastly, to implement different kinds of unsupervised models in order to assess risk and filter out cases.
