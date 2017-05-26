@@ -277,7 +277,6 @@ class LocalIngest(luigi.Task):
 # tasks del Pipeline Clásico
 #######################
 
-
 class funcionarios(luigi.Task):
     # Las clases específicas definen el tipo de llamada por hacer
     client = luigi.s3.S3Client()
@@ -303,10 +302,9 @@ class funcionarios(luigi.Task):
 
         return luigi.LocalTarget(self.local_ingest_file)
 
-
 class claves_salariales(luigi.Task):
     """
-
+    Clase que descarga las claves salariales de los puestos de los funcionarios públicos
     """
     client = luigi.s3.S3Client()
     year_month = luigi.Parameter()
@@ -404,7 +402,6 @@ class declaranet(luigi.Task):
 
         return luigi.LocalTarget(self.local_ingest_file)
 
-
 class DeclaranetPDFtoText(luigi.Task):
 
     year_month = luigi.Parameter()
@@ -440,8 +437,6 @@ class DeclaranetPDFtoText(luigi.Task):
 
         return luigi.LocalTarget("../../data/declaranet/cv_to_text.txt")
 
-
-
 class DeclaranetS3Download(luigi.Task):
 
     raw_bucket = luigi.Parameter('DEFAULT')
@@ -469,7 +464,6 @@ class DeclaranetS3Download(luigi.Task):
     def output(self):
         local_path = self.local_path + "declaranet/temp.csv"
         return luigi.LocalTarget(local_path)
-
 
 class DeclaranetCrawl(luigi.Task):
 

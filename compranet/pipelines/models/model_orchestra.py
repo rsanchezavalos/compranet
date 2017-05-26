@@ -66,17 +66,23 @@ class CentralityClassifier(luigi.Task):
 
     def run(self):
 
-        # Todo() this can be easily dockerized
+        # First upload data into neo4j
         cmd = '''
-            cycli {}/{}.{}
-            '''.format(self.script, self.pipeline_task, self.type_script)
+            cycli ./models/neo4j_scripts/upload.neo4j
+            '''
+        subprocess.call(cmd, shell=True)
+
+        # Run centrality meassures
+        cmd = '''
+            cycli ./models/neo4j_scripts/centrality.neo4j
+            '''
+        return subprocess.call(cmd, shell=True)
 
 
 class MissingClassifier(luigi.Task):
 
 	"""
-	Clase que corre el índice 
-	neo4j
+	Clase que corre el índice de clasificación por missing values
 	"""
 
 	year_month = luigi.Parameter()
