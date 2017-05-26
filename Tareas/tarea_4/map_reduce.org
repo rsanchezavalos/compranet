@@ -1,5 +1,53 @@
 - Diseñe (en /pseudo código/, imágen, código, lo que sea más fácil) el **MapReduce** para lo siguiente:
+ 
   - Encontrar el máximo de un conjunto de datos.
+
+´´´
+En este caso la función map debe recibir un chunk de datos y producir un resultado intermedio, el máximo de en chunk. EL reducer recolectará los máximos aplicados por cada map y obtendrá un máximo final.
+
+´´´
+
+
+
   - Encontrar el promedio y desviación estándar de unos datos.
-  - Encontrar el top 10 de una cantidad.
+
+´´´
+Dado que se cumple: mean(mean(a,b), mean(c,d,e)) != mean(a,b,c,d,e) no se puede promediar en el mapper entonces:
+
+* **Mapper**
+* En cada mapper se suma los elementos y se lleva una cuenta del total
+*output: key value (cuenta de los elemento, suma de los elementos)
+
+* **Reducer**
+* recibe el set (cuenta,suma)
+* agrega las cuentas y las sumas de cada mapper y obtiene un total que ya puede promediar.
+* output: key count
+
+* **Desviación estandar**
+Se almacena el promedio y la cuenta del ejercicio pasado y se regresa a una función mapper que resta el valor menos el promedio y se calcula la raíz cuadrada, el mapper puede sumar los elementos de su grupo.
+El reducer suma los values de cada mapper y divide entre la cuenta del ejercicio pasado. 
+´´´
+
+
+- Encontrar el top 10 de una cantidad.
+´´´
+* **Mapper**
+*Regresa el top 10 de cada mapper
+*output: key count
+
+* **Reducer**
+* encuentra el top 10 global
+* output: key count
+
+´´´
+
   - Contar por grupo
+
+´´´
+Dividimos la base de datos por cada maper
+se identifica los grupos diferentes existentes en cada maper
+en cada maper contamos los elementos de cada grupo
+pasamos los estadísticos intermedios al reducer
+el reducer vuelve a obtener únicos y suma los conteos individuales
+
+´´´
